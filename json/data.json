@@ -1,0 +1,17 @@
+[
+  {
+    "device_id": "device100",
+    "grip": 6.23,
+    "timestamp": "2025-04-24T22:09:16.736959"
+  },
+  {
+    "device_id": "device002",
+    "grip": 6.23,
+    "timestamp": "2025-04-24T22:09:16.905516"
+  },
+  {
+    "device_id": "device003",
+    "grip": 6.23,
+    "timestamp": "2025-04-24T22:09:17.040386"
+  }
+]
