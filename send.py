@@ -38,6 +38,7 @@ class Keep():
             return data["URL"]
 
 def send_push_message(user_id, messages):
+    """發送打包好的訊息給指定使用者"""
     url = "https://api.line.me/v2/bot/message/push"
     headers = {
         "Content-Type": "application/json",
@@ -52,13 +53,12 @@ def send_push_message(user_id, messages):
     return response.status_code, response.text
 
 def daily_check_task():
+    """每天19:00檢查所有使用者今日有無更新資料"""
     while True:
         now = datetime.now()
-        # 每天 19:00 檢查一次
         if now.hour == 19 and now.minute == 0:
             print("正在執行每日資料檢查...")
 
-            # 載入資料
             try:
                 with open(USER_FILE, "r", encoding="utf-8") as f:
                     users = json.load(f)
@@ -73,7 +73,6 @@ def daily_check_task():
                 print(f"讀取握力資料失敗: {e}")
                 grip_data = []
 
-            # 今天日期
             today = datetime.now().date()
 
             for user in users:
@@ -83,7 +82,6 @@ def daily_check_task():
                 found_today = False
                 for record in grip_data:
                     if record.get("device_id") == device_id:
-                        # 判斷 json 檔案寫入時間是否為今天（不夠準，但簡單）
                         file_time = datetime.fromtimestamp(
                             os.path.getmtime(DATA_FILE)
                         ).date()
@@ -99,7 +97,7 @@ def daily_check_task():
                     status, response = send_push_message(user_id, [msg])
                     print(f"已提醒 {user_id}：{status}, {response}")
 
-            time.sleep(61)  # 避免在這分鐘內重複發送
+            time.sleep(61)
         else:
             time.sleep(30)
 
@@ -174,6 +172,7 @@ def disable_get_users():
     return jsonify(users)
 
 def get_device_id():
+    """把users.json中所有的device id讀出來"""
     devices = []
     if os.path.exists(USER_FILE):
         with open(USER_FILE, "r", encoding="utf-8") as f:
