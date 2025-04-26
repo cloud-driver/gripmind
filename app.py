@@ -67,7 +67,7 @@ def home():
                 background-color: #00c300;
                 color: white;
                 border: none;
-                padding: 12px 20px;
+                padding: 12px 20px; 
                 border-radius: 8px;
                 font-size: 18px;
                 cursor: pointer;
