@@ -2,11 +2,13 @@ import os
 import requests
 import secrets
 import jwt as pyjwt
-from flask import Flask, request, redirect, jsonify, session, send_from_directory
-from send import Keep, send_grip_data, disable_get_users, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id
+from flask import Flask, request, redirect, jsonify, session, send_from_directory, Response
+from send import Keep, send_grip_data, disable_get_users, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id, save_log
 import threading
+import json
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 app.secret_key = secrets.token_hex(16)
 
 CLIENT_ID = int(Keep.channel_id())
@@ -67,7 +69,7 @@ def home():
                 background-color: #00c300;
                 color: white;
                 border: none;
-                padding: 12px 20px;
+                padding: 12px 20px; 
                 border-radius: 8px;
                 font-size: 18px;
                 cursor: pointer;
@@ -103,7 +105,7 @@ def haha():
         <meta name="theme-color" content="#74ebd5">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <title>LINE 裝置綁定登入</title>
+        <title>Send to all users</title>
         <style>
             body {
                 font-family: "Microsoft JhengHei", sans-serif;
@@ -167,7 +169,7 @@ def send_to_all_users():
         <meta name="theme-color" content="#74ebd5">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <title>LINE 裝置綁定登入</title>
+        <title>Send to all users</title>
         <style>
             body {
                 font-family: "Microsoft JhengHei", sans-serif;
@@ -334,6 +336,15 @@ def grip_data():
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+@app.route('/log')
+def log():
+    data = Keep.logs()
+    response = Response(
+        json.dumps(data, ensure_ascii=False),
+        content_type='application/json; charset=utf-8'
+    )
+    return response
 
 if __name__ == "__main__":
     checker_thread = threading.Thread(target=daily_check_task, daemon=True)
