@@ -57,6 +57,7 @@ def send_push_message(user_id, messages):
         "to": user_id,
         "messages": messages
     }
+    save_log(f"Have allready send {messages} to {user_id}")
     response = requests.post(url, headers=headers, json=payload)
     return response.status_code, response.text
 
@@ -64,7 +65,7 @@ def daily_check_task():
     """每天19:00檢查所有使用者今日有無更新資料"""
     while True:
         now = datetime.now()
-        if now.hour == 19 and now.minute == 0:
+        if now.hour == 18 and now.minute == 1:
             save_log("正在執行每日資料檢查...")
 
             try:

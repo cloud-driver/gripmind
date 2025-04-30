@@ -22,5 +22,57 @@
         "log": {
             "error": "找不到對應的裝置 ID: device100000"
         }
+    },
+    {
+        "time": "Sun Apr 27 19:00:19 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Mon Apr 28 19:00:11 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Mon Apr 28 19:00:11 2025",
+        "log": "已提醒 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"558692546487517699\",\"quoteToken\":\"QutWCdQ1FGJA5we3VfFxJVytS2U_4sgMwWA_XIa3SIOGauKgOdI-OOVVTWa8-ipj0CrBMjlDqSTwv_BP-QYxWfM0hV_IOmEJG_Pc1P60Cfbsw08pnUZr5Mb_nv3lGVXeLWzC0WHuBy0TMPImvcVO8Q\"}]}"
+    },
+    {
+        "time": "Tue Apr 29 19:00:03 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Tue Apr 29 19:00:04 2025",
+        "log": "已提醒 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"558837488765108672\",\"quoteToken\":\"hlPSDH-U8G3Iv3mdRu-ftsVq1rRMZ0N1jMMYnFEK4IiqKKAz5Etm1-Ox0L9QsYixKWwDrqFAd0w_I8SpKCGayyrwCDp4iwnkvSWihIzKrJ_WF-TVe9oQ44rYAMxcJraTR2NBfdgjKrrEgsjV6KU1cA\"}]}"
+    },
+    {
+        "time": "Wed Apr 30 19:00:26 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Wed Apr 30 19:00:26 2025",
+        "log": "已提醒 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"558982481106960570\",\"quoteToken\":\"AgEBUU0Ga-F95ujIp21kEyR970Lkw25tNMlYK__u1Qcd5yBoxt-ZQdw6742hPXaGp_1LW4WhxEzSt4vWbETR_KTcC7Q1V_--8UcWElO79T6eONs74tj75JPeLSvQ1InD_Pp0rpvJxxVecqNSSBri3Q\"}]}"
+    },
+    {
+        "time": "Wed Apr 30 22:00:10 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Wed Apr 30 22:00:10 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Wed Apr 30 22:00:10 2025",
+        "log": "已提醒 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"559000573706502424\",\"quoteToken\":\"X_RbgGvqDxIfXJis_IuddYH5sVzBd763KDLkNib13Yi3SgQrInFjnYAXfivcqoRCoPg_iHHkPye3POjpabe7xXtWwOto-0YU8VxAD9l3cUVmSdNqSPgnqMZPUhsq34O5oBT8eBc3Y7HehuC0hy1rMg\"}]}"
+    },
+    {
+        "time": "Wed Apr 30 22:02:10 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Wed Apr 30 22:02:10 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Wed Apr 30 22:02:10 2025",
+        "log": "已提醒 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"559000775821623299\",\"quoteToken\":\"sgUuJSL6o5e6Zxxr8d2wWVIWwK_ACCf4vM2aWxlYNTVT3puCGXkzYmmRpWfZXcEMW2zetj6z_xSDFsR4r2y137RUnmcDCmMIxv6KPn_EqgKZudARsKZ99dD73UPGw7JqPoa_v4bYSySwa8NwqQizww\"}]}"
     }
 ]
