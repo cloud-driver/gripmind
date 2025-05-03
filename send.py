@@ -170,6 +170,11 @@ def send_grip_data(device_id, grip_value):
         "type": "text",
         "text": f"今日握力紀錄：{grip_value} kg，{check_done_the_goal(grip_value)}"
     }
+    if grip_value == 2.3:
+        message = {
+        "type": "text",
+        "text": f"今日握力紀錄：{grip_value} kg，{check_done_the_goal(grip_value)},(this is test of API)"
+        }
     status, response = send_push_message(user_id, [message])
     save_result = save_grip_data(device_id, grip_value)
     save_log({"message": f"已發送給 {user_id}：{status}, {response}, 資料庫儲存狀況：{save_result}"})
