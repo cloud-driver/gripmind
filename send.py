@@ -187,7 +187,7 @@ def disable_get_users():
             users = json.load(f)
     else:
         users = []
-    return jsonify(users)
+    return 404
 
 def get_device_id():
     """把users.json中所有的device id讀出來"""

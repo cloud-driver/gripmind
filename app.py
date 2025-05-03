@@ -321,10 +321,6 @@ def callback():
         </html>
     """
 
-@app.route("/users")
-def get_users():
-    return disable_get_users()
-
 @app.route("/gripdata", methods=["POST"])
 def grip_data():
     data = request.get_json()
