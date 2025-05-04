@@ -17,7 +17,7 @@
   {
     "device_id": "device200",
     "grip": 6.23,
-    "timestamp": "2025-04-27T17:26:27.671404"
+    "timestamp": "2025-05-02T15:43:01.910929"
   },
   {
     "device_id": "device101",
@@ -28,5 +28,20 @@
     "device_id": "device102",
     "grip": 6.23,
     "timestamp": "2025-04-27T16:39:42.711220"
+  },
+  {
+    "device_id": "device400",
+    "grip": 6.23,
+    "timestamp": "2025-05-02T15:43:02.212495"
+  },
+  {
+    "device_id": "device30125",
+    "grip": 2.3,
+    "timestamp": "2025-05-03T09:49:29.726282"
+  },
+  {
+    "device_id": "123",
+    "grip": 2.3,
+    "timestamp": "2025-05-03T09:49:29.943210"
   }
 ]

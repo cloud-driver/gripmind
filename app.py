@@ -163,7 +163,7 @@ def haha():
 def send_to_all_users():
     users = get_device_id()
     for u in users:
-        send_grip_data(u, 6.23)
+        send_grip_data(u, 2.3)
     return '''
     <!DOCTYPE html>
     <html lang="zh-Hant">
@@ -262,6 +262,7 @@ def callback():
     decoded = pyjwt.decode(id_token, options={"verify_signature": False}, algorithms=["HS256"])
     user_id = decoded.get("sub")
     display_name = decoded.get("name", "未知")
+    save_log(f"{user_id} have allready login with deviceID in {device_id}")
 
     save_user_device(user_id, device_id)
 
@@ -319,10 +320,6 @@ def callback():
         </body>
         </html>
     """
-
-@app.route("/users")
-def get_users():
-    return disable_get_users()
 
 @app.route("/gripdata", methods=["POST"])
 def grip_data():
