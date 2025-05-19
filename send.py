@@ -5,12 +5,13 @@ import os
 from flask import jsonify
 from datetime import datetime
 import time
-import fcntl
+import difflib
 
 USER_FILE = r"json/users.json"
 KEEP_FILE = r"json/keep.json"
 DATA_FILE = r"json/data.json"
 LOG_FILE = r"json/log.json"
+DIALOGUE_FILE = r"json/dialogue.json"
 SECRET_TOKEN = "admin0990"
 
 class Keep():
@@ -222,15 +223,30 @@ def save_user_device(user_id, device_id):
 
 def save_log(text):
     with open(LOG_FILE, "r", encoding="utf8") as f:
-        fcntl.flock(f.fileno(), fcntl.LOCK_EX)
         logs = json.load(f)
 
     logs.append({"time": time.ctime(time.time()), "log": text})
 
     with open(LOG_FILE, "w", encoding="utf8") as f:
         json.dump(logs, f, indent=4, ensure_ascii=False)
-        fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+        
+def replay_msg(user_msg):
+    with open(DIALOGUE_FILE, "r", encoding="utf8") as f:
+        qa_list = json.load(f)
+        
+    for qa in qa_list:
+        if any(keyword in user_msg for keyword in qa["keywords"]):
+            return qa["answer"]
+
+    questions = [qa["question"] for qa in qa_list]
+    matches = difflib.get_close_matches(user_msg, questions, n=1, cutoff=0.65)
+
+    if matches:
+        for qa in qa_list:
+            if qa["question"] == matches[0]:
+                return qa["answer"]
+
+    return "抱歉，我目前無法回答這個問題喔，可以問我 GripMind 的功能或技術內容！"
 
 if __name__ == "__main__":
     print("這裡是自建函式庫，你點錯了，請使用 app.py 發送資料測試")
-    send_grip_data("device100000", 33)

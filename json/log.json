@@ -194,5 +194,29 @@
     {
         "time": "Sat May  3 18:01:14 2025",
         "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Mon May 19 08:45:33 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '你剛剛說了：Haha'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Mon May 19 13:07:40 2025",
+        "log": "Have allready send [{'type': 'text', 'text': 'GripMind 是一款結合物聯網（IoT）與智慧互動提醒功能的手部肌力復健裝置，能即時測量握力並提供每日數據回饋。'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Mon May 19 13:07:54 2025",
+        "log": "Have allready send [{'type': 'text', 'text': 'GripMind 擁有三大功能：智慧握力測量、即時 LINE 推播提醒，以及多模式手部訓練設計，能依不同族群需求提供個人化復健方案。'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Mon May 19 13:08:12 2025",
+        "log": "Have allready send [{'type': 'text', 'text': 'GripMind 擁有三大功能：智慧握力測量、即時 LINE 推播提醒，以及多模式手部訓練設計，能依不同族群需求提供個人化復健方案。'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Mon May 19 13:08:52 2025",
+        "log": "Have allready send [{'type': 'text', 'text': 'GripMind 擁有三大功能：智慧握力測量、即時 LINE 推播提醒，以及多模式手部訓練設計，能依不同族群需求提供個人化復健方案。'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Mon May 19 13:09:22 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '系統每天會在固定時間（18:01）自動檢查是否上傳握力資料，若未達成，將透過 LINE Bot 自動推播提醒使用者進行測量。'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
     }
 ]

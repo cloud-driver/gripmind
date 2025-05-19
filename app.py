@@ -3,7 +3,7 @@ import requests
 import secrets
 import jwt as pyjwt
 from flask import Flask, request, redirect, jsonify, session, send_from_directory, Response
-from send import Keep, send_grip_data, disable_get_users, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id, save_log
+from send import Keep, send_grip_data, disable_get_users, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id, save_log, send_push_message, replay_msg
 import threading
 import json
 
@@ -349,6 +349,24 @@ def log():
         content_type='application/json; charset=utf-8'
     )
     return response
+
+@app.route("/webhook", methods=["POST"])
+def webhook():
+    body = request.get_json()
+    events = body.get("events", [])
+
+    for event in events:
+        if event.get("type") == "message" and event["message"]["type"] == "text":
+            user_id = event["source"]["userId"]
+            user_message = event["message"]["text"]
+            reply_text = replay_msg(user_message)
+
+            send_push_message(user_id, [{
+                "type": "text",
+                "text": reply_text
+            }])
+
+    return jsonify({"status": "ok"})
 
 @app.errorhandler(404)
 def page_not_found(error):

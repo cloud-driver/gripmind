@@ -29,3 +29,5 @@ else:
     
     print("get url successful")
     print(f"{url}/callback")
+    print(f"{url}/webhook")
+    
