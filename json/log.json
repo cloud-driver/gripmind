@@ -218,5 +218,365 @@
     {
         "time": "Mon May 19 13:09:22 2025",
         "log": "Have allready send [{'type': 'text', 'text': '系統每天會在固定時間（18:01）自動檢查是否上傳握力資料，若未達成，將透過 LINE Bot 自動推播提醒使用者進行測量。'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Mon May 19 20:43:45 2025",
+        "log": "U19f5c7ea1eb5591d7d374a4a62374f0f have allready login with deviceID in decice000111"
+    },
+    {
+        "time": "Tue May 20 08:42:38 2025",
+        "log": "U6ca68b765b4a9888f791ed45c2801f2a have allready login with deviceID in userid"
+    },
+    {
+        "time": "Tue May 20 18:01:27 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Tue May 20 18:01:27 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Tue May 20 18:01:27 2025",
+        "log": "已提醒 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"561875646927339706\",\"quoteToken\":\"fgB3ewFAh0-q1-wRRypHZa5vhwEQ0s7vlkLA7Wmh6MqMgvcf5BqpZhixTu2Vy5GtvgdvoJWQMe2k4AS92tZHVxByS4Xxd351mvlk73jzBphdX01FaOFuAkzYMPrrYXX2PhksUn6iQt7Zn0QJyKT0hw\"}]}"
+    },
+    {
+        "time": "Tue May 20 18:01:27 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U6ca68b765b4a9888f791ed45c2801f2a"
+    },
+    {
+        "time": "Tue May 20 18:01:27 2025",
+        "log": "已提醒 U6ca68b765b4a9888f791ed45c2801f2a：200, {\"sentMessages\":[{\"id\":\"561875647581389345\",\"quoteToken\":\"ZoYz5ZOqTmrNZPyM583x-z0F3E90xbonLdOzCUA7GLj9PUVb9rNuNrhkJr3OK82L-y2nUAmKt-tBEd4pET625vujqMkapouCACrLvuf1-j9FJxrmJtA3-USJt7kq8fKkUuZI7D02lRpTGmUP0yRQrQ\"}]}"
+    },
+    {
+        "time": "Tue May 20 18:01:28 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Tue May 20 18:01:28 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Tue May 20 18:01:28 2025",
+        "log": "已提醒 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"561875649712357943\",\"quoteToken\":\"NelyDtTtrFkDic3zx_UbnTDoMpMEfU6u-b_dgegLma9I8AHWo3jNiYUS4AzaI2wV4u5kGCn8Xn1V4Zjh70Nszx_ZsFaq2I1z24wDM6oaM9QS7NzqUnU9Sxf9A_h9dcvUEGCU82M95gY8ioLcDOmcjw\"}]}"
+    },
+    {
+        "time": "Tue May 20 18:01:28 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U6ca68b765b4a9888f791ed45c2801f2a"
+    },
+    {
+        "time": "Tue May 20 18:01:29 2025",
+        "log": "已提醒 U6ca68b765b4a9888f791ed45c2801f2a：200, {\"sentMessages\":[{\"id\":\"561875650014347798\",\"quoteToken\":\"PatAuRE1Uh_kivKd9dt4mcOcENUQe0dpNrwka76xtq4KBt0kwEP6pjnGBrage_Ufc7OTYeO8jd-YHN97hbTzc_wcZanMRXioT3X-5Vcz9QJCAnn5d7fNXBIhwIqGs5CufW1RBmA3X5TsEvqmgrU8KQ\"}]}"
+    },
+    {
+        "time": "Wed May 21 18:01:22 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Wed May 21 18:01:22 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Wed May 21 18:01:22 2025",
+        "log": "已提醒 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"562020594439160168\",\"quoteToken\":\"Hy2y6FS-ihAtbROUv1mZz6fleNB2scaUVT2ZBaKgz0h45Cb-e8CyjLzsP1AEe_NorTCpV8uAp7hLeIkTm2hCyJqbHkqj7hWCjuxnh147zTM1hCNy9S2pFihxLUrem6gITC2W_pOigu0TkGkdGJPxsg\"}]}"
+    },
+    {
+        "time": "Wed May 21 18:01:22 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U6ca68b765b4a9888f791ed45c2801f2a"
+    },
+    {
+        "time": "Wed May 21 18:01:22 2025",
+        "log": "已提醒 U6ca68b765b4a9888f791ed45c2801f2a：200, {\"sentMessages\":[{\"id\":\"562020594792268092\",\"quoteToken\":\"LxHqqMk20d3WF-WP8rKb2URiaUAATzIJVi0ZrbqOeVuG6Z6TtijpX6WtzUwCtA1Mx278lIdta0Sfx9q7Ak8KSeKs8IwYmBeK3SN6akgNp4ksoUyaB_SZyVr_KbG9QOeLmUkvBQQO9wK321c5yyEQBg\"}]}"
+    },
+    {
+        "time": "Wed May 21 18:01:23 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Wed May 21 18:01:23 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Wed May 21 18:01:23 2025",
+        "log": "已提醒 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"562020596620198042\",\"quoteToken\":\"UMpyzeM35Gwu1DR5vNRIXYn_h90XC4b3bjbP614am3KpBSYtgovimz7Er4PHUFuqG6ViNPBFWB_cykCPigfeMziJC-Jmo4C3kkW8lFTWab-sOSLr-gk_UYYEPTbr8AaUKixoPWEA1XTon7gPajt2Yg\"}]}"
+    },
+    {
+        "time": "Wed May 21 18:01:23 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U6ca68b765b4a9888f791ed45c2801f2a"
+    },
+    {
+        "time": "Wed May 21 18:01:23 2025",
+        "log": "已提醒 U6ca68b765b4a9888f791ed45c2801f2a：200, {\"sentMessages\":[{\"id\":\"562020596788494476\",\"quoteToken\":\"HL9qIIbGqEkOiYgUFFlIkI5e7rnIt48pTX0GAA2YgE-CzfBxMXlZpJ07XVix_C7m8XgwBKd9GCMAdRK21cfuUbSsqvmGhDMCRLnV0QC6J7-ucVoYRg8jAIalva3P_JDitj7zDm9qqo7v5n3nXJqPDw\"}]}"
+    },
+    {
+        "time": "Thu May 22 13:45:05 2025",
+        "log": "U5c947377b7d273076bf0abb95d1058e8 have allready login with deviceID in 1234"
+    },
+    {
+        "time": "Thu May 22 18:01:17 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Thu May 22 18:01:17 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Thu May 22 18:01:17 2025",
+        "log": "已提醒 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"562165542757859342\",\"quoteToken\":\"As2pt4vR9j4INJWqnBPGinGaSnngM60rYUBOgOyRMTGxdCBjYLB9R86odUWd4zYmb9_CTumYb9VFdQK9ltZbLoxIs9uVRC-cyiaYh2gS4mtebB-ci3GxIFHtyH88vHLC0iFVYEPIpG_2FFr3xAfpLg\"}]}"
+    },
+    {
+        "time": "Thu May 22 18:01:17 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U6ca68b765b4a9888f791ed45c2801f2a"
+    },
+    {
+        "time": "Thu May 22 18:01:18 2025",
+        "log": "已提醒 U6ca68b765b4a9888f791ed45c2801f2a：200, {\"sentMessages\":[{\"id\":\"562165543026294844\",\"quoteToken\":\"PaOaqLsqNYeF69Oc9Ipp_yiJt94AZ1CjmNHUNiP4UdByiZZd49MVc8ziGZk6SayItcuG_vXFOOrpWbeyP4GjsvGJx3pV3hTgxwkQZeE1h5hfq8tH4E0DASg9xxGrHMFvD-HH2x0L1as7glVooWYmVw\"}]}"
+    },
+    {
+        "time": "Thu May 22 18:01:18 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U5c947377b7d273076bf0abb95d1058e8"
+    },
+    {
+        "time": "Thu May 22 18:01:18 2025",
+        "log": "已提醒 U5c947377b7d273076bf0abb95d1058e8：200, {\"sentMessages\":[{\"id\":\"562165543277429310\",\"quoteToken\":\"dSClVFk7OYH27zkkHYWqpgxRmtosOnZYFVuumaezvT3daStMBTF5LVU0WABfKQsPHGtiDx4DfpC4QJ6Ia5TeuETryuO_B_krKKHMyfrUZ_5q570Krd0THy4K5tH4AjI4sPpB6m9fr7hxbUWGXrqK4w\"}]}"
+    },
+    {
+        "time": "Thu May 22 18:01:18 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Thu May 22 18:01:18 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Thu May 22 18:01:18 2025",
+        "log": "已提醒 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"562165544200438176\",\"quoteToken\":\"azhfLQhAmqhFNiWlMDwKv66_YIrhik7aBNbU5JAg3va1crbrw6ndvP9TFWVz9bfUjhXmRQC9nxICkZo57YSlYJDwmDymU6In6VfgzyzJfM4M4JuFpNyMfGykoPhfHZyJEkn--3AeMWJZyYTNG-otmw\"}]}"
+    },
+    {
+        "time": "Thu May 22 18:01:18 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U6ca68b765b4a9888f791ed45c2801f2a"
+    },
+    {
+        "time": "Thu May 22 18:01:18 2025",
+        "log": "已提醒 U6ca68b765b4a9888f791ed45c2801f2a：200, {\"sentMessages\":[{\"id\":\"562165544636121336\",\"quoteToken\":\"2J43pj5X1FUhubZPXOy4L-EPQHcW4GnFCb7EdnH3GwFQCa_eph0RjF5V-Oder6FkxzXiFNxvmCFLgjqjr7OpLe8lgKskfCoa0rH0BKYGpvBHF3Ddlg4-YV4u1WG295dmjge6jY_s0M1kCHTrReSvsA\"}]}"
+    },
+    {
+        "time": "Thu May 22 18:01:18 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U5c947377b7d273076bf0abb95d1058e8"
+    },
+    {
+        "time": "Thu May 22 18:01:20 2025",
+        "log": "已提醒 U5c947377b7d273076bf0abb95d1058e8：200, {\"sentMessages\":[{\"id\":\"562165546666426439\",\"quoteToken\":\"dIsixLig0pIUBEtNF6yi86iWSW4BpHEpBw6IUA2t1pwcrbeCBT3EPDyjQ5OazT_b5l18J_1jtc7VcRZnqRqziKeGDVwnKVDU2_RJd4qoLeJgTUz2Uo0QgPBoHhQoFgIlJZBXUblPUp1SoXUmSUicfQ\"}]}"
+    },
+    {
+        "time": "Fri May 23 18:01:12 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Fri May 23 18:01:12 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Fri May 23 18:01:13 2025",
+        "log": "已提醒 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"562310490554892553\",\"quoteToken\":\"Ex5-n8rJ9X-nr2UXbpi75kEt8hD9bbAuQj2FwOGubCv_rmHfgHmKFLFLtzoWWjGKBRLwkU3EcGZtLivv20U0ID3VDxi22vdWkZn6_VXtGy0Qpdj70V9A2F6oAFnqZ7I8TkOgo1slKtWR8VSWuxwJJg\"}]}"
+    },
+    {
+        "time": "Fri May 23 18:01:13 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U6ca68b765b4a9888f791ed45c2801f2a"
+    },
+    {
+        "time": "Fri May 23 18:01:13 2025",
+        "log": "已提醒 U6ca68b765b4a9888f791ed45c2801f2a：200, {\"sentMessages\":[{\"id\":\"562310490639040925\",\"quoteToken\":\"x_2bNTtkxdaEZDGtKF5sWGOw2SOdrXODX_AE0-sqeut4fUMjRrmnfi8RU5-45YW9UpiZH9Z8oh4KPYpJeb_Oz7Ixt9aAsfG4rWEHxQljxTPo3E00sEY_vsmMRG7egI0AgGVH7nFOpmvQaImd8Uffpg\"}]}"
+    },
+    {
+        "time": "Fri May 23 18:01:13 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U5c947377b7d273076bf0abb95d1058e8"
+    },
+    {
+        "time": "Fri May 23 18:01:13 2025",
+        "log": "已提醒 U5c947377b7d273076bf0abb95d1058e8：200, {\"sentMessages\":[{\"id\":\"562310490991886819\",\"quoteToken\":\"tHgDMNF4kZomRscoA2ywt8F_1LUOmlezOlTLsYhBRhM2ivC50MhiylQiwuyKPnIJD-n_HtqyGKrxDzdkftazW9Zx0m0KS3Ew1ggvk9YW44bsoXnVhn8eMJukRYbs777JwHOBHbf6BGOi3f5qlT5qOA\"}]}"
+    },
+    {
+        "time": "Fri May 23 18:01:14 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Fri May 23 18:01:14 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Fri May 23 18:01:14 2025",
+        "log": "已提醒 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"562310492619276575\",\"quoteToken\":\"FPfrzxo7NQDKkqcTeNjC_4v31iLptUieDEkqIoHDRR8C2QcyrYsejzORlZ4dXUdBHeg6yrvGR2iWf4tM6lRrhLxW6KKRZrTdkSgLqLdxThQG75p6W3nUPX-URHwGRny_TkY4U7b8XhYqnstcueAkzw\"}]}"
+    },
+    {
+        "time": "Fri May 23 18:01:14 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U6ca68b765b4a9888f791ed45c2801f2a"
+    },
+    {
+        "time": "Fri May 23 18:01:14 2025",
+        "log": "已提醒 U6ca68b765b4a9888f791ed45c2801f2a：200, {\"sentMessages\":[{\"id\":\"562310492971074073\",\"quoteToken\":\"41moJYVibYXMpsmWU-B8aB578nzD7ruRwg6YmfE2SZlRTuGrZeakab-nGCm1DxSiDU4xPStgnuKe_HzsL8_szXxQtfzmYYcwRG_R6lteXwormlOJEJQvzyWFTJvM0-F9IKl_6bwvymp5-jDYXZPe9Q\"}]}"
+    },
+    {
+        "time": "Fri May 23 18:01:14 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U5c947377b7d273076bf0abb95d1058e8"
+    },
+    {
+        "time": "Fri May 23 18:01:14 2025",
+        "log": "已提醒 U5c947377b7d273076bf0abb95d1058e8：200, {\"sentMessages\":[{\"id\":\"562310493272801804\",\"quoteToken\":\"fKq8gmO09Qi4R8ihBVSvsfWEHulM1buZXYH7WG3UEnYJHTp39N62oLUDAUXwTfVvUYM-YYUXIJtJj4BmUQ-MUtuLwACYcGm7Qr-g3I84J5Nwsn4H1Iaa0y2KdjXEqNv76k9iOBf6OCJquSu4lcMCTQ\"}]}"
+    },
+    {
+        "time": "Sat May 24 10:52:49 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '抱歉，我目前無法回答這個問題喔，可以問我 GripMind 的功能或技術內容！'}] to Uf37376d8c3cbf6c0fac85df41e43cd3f"
+    },
+    {
+        "time": "Sat May 24 10:56:19 2025",
+        "log": "U8395de5b775cac852a5f2c471e3b9302 have allready login with deviceID in iiiii"
+    },
+    {
+        "time": "Sat May 24 11:00:42 2025",
+        "log": "Have allready send [{'type': 'text', 'text': 'GripMind 擁有三大功能：智慧握力測量、即時 LINE 推播提醒，以及多模式手部訓練設計，能依不同族群需求提供個人化復健方案。'}] to Uf37376d8c3cbf6c0fac85df41e43cd3f"
+    },
+    {
+        "time": "Sat May 24 18:01:09 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Sat May 24 18:01:09 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sat May 24 18:01:10 2025",
+        "log": "已提醒 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"562455438588379627\",\"quoteToken\":\"_cfeUOuve4ibHnsk4X3GFuOqUOQzy9jb2_NzJgQ-qOeIgAMiTqfD8HTI5YcZRWpfElDVrwMak_N3e51rmpvki_SUE5pGx-SlZbr9S77JIS-ncJP8qRtFDMpN6KN2gyicIWN6_oK_h_APp9F_EjyAjQ\"}]}"
+    },
+    {
+        "time": "Sat May 24 18:01:10 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U6ca68b765b4a9888f791ed45c2801f2a"
+    },
+    {
+        "time": "Sat May 24 18:01:10 2025",
+        "log": "已提醒 U6ca68b765b4a9888f791ed45c2801f2a：200, {\"sentMessages\":[{\"id\":\"562455438956691465\",\"quoteToken\":\"xFjovfjZNVMquBhs1KttIyVteo-UGZV-brS-xq9jzek9KeIH1FuK7SzqnDgvjkECXTDjzDfC6s9yXHO9CghlU9oFV-cTHlPkhblfVIzGD28agEP7LENgtek5gxTwLzXPTC4PsLupIFLwQ2uahC7ZQA\"}]}"
+    },
+    {
+        "time": "Sat May 24 18:01:10 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U5c947377b7d273076bf0abb95d1058e8"
+    },
+    {
+        "time": "Sat May 24 18:01:10 2025",
+        "log": "已提醒 U5c947377b7d273076bf0abb95d1058e8：200, {\"sentMessages\":[{\"id\":\"562455439241904520\",\"quoteToken\":\"sIY2zkx3QEURJq7eqsr5zbbiBKYKs1rH4x6BSlpV-yUdErdg5-dVY9wRVLRskNaINA7I8lFTfvTrRVu020pMfHWCYGqbuqyEYzC3BExBDxse5kPlZDiNO0ykSYwCTML_PJ4U-d5DZNlbNNwpAefm4g\"}]}"
+    },
+    {
+        "time": "Sat May 24 18:01:10 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U8395de5b775cac852a5f2c471e3b9302"
+    },
+    {
+        "time": "Sat May 24 18:01:10 2025",
+        "log": "已提醒 U8395de5b775cac852a5f2c471e3b9302：200, {\"sentMessages\":[{\"id\":\"562455439577448454\",\"quoteToken\":\"0R6h0nBgoPdm4F8Gjd8MXutQ1hlkOWagop0wZVFGzB5zRmeLGUTs1zhJwKxNMdkGeqAzPDla-Ap6PMgAJYHGoeJUa1k2UDWJFcNdMaY6Gvgd4qf9zJnGoCD4Ma6OlPmCDQAfxEFIIP4c5YnBkWKuSg\"}]}"
+    },
+    {
+        "time": "Sat May 24 18:01:11 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Sat May 24 18:01:11 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sat May 24 18:01:11 2025",
+        "log": "已提醒 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"562455440467427387\",\"quoteToken\":\"URQsCE9CNEqXiCEmvxkakxnZ6-SpVhopXfbY2MEVc8xv_ACXL8AfRlieBcCBZLpFeS4sLlfeD78uwp8Q_s6pKWD6IieYIrb2HtXAo4gCwwtH9Sc1444zQ34uZRfy6PL2wbbbQl69nQuwGAbj-kQpnQ\"}]}"
+    },
+    {
+        "time": "Sat May 24 18:01:11 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U6ca68b765b4a9888f791ed45c2801f2a"
+    },
+    {
+        "time": "Sat May 24 18:01:11 2025",
+        "log": "已提醒 U6ca68b765b4a9888f791ed45c2801f2a：200, {\"sentMessages\":[{\"id\":\"562455440634413382\",\"quoteToken\":\"uxd3IzVP_L3hGd0PuAhNN23wi6ri8IWXIB5nv7jYM_-RWVzuunnIYPs8I8U9H21iEtxYHVMkKmAs1zlqi-h77bc9J7f_L2EVa0SrHlCsoO4FY0Fv1ISfDXs4TSz5EhLKlJ3UaNh4mAPMnVEmS7db9g\"}]}"
+    },
+    {
+        "time": "Sat May 24 18:01:11 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U5c947377b7d273076bf0abb95d1058e8"
+    },
+    {
+        "time": "Sat May 24 18:01:11 2025",
+        "log": "已提醒 U5c947377b7d273076bf0abb95d1058e8：200, {\"sentMessages\":[{\"id\":\"562455440836002228\",\"quoteToken\":\"46HBrHZ3wWJ0C_7FiQ9CFnyVfQZ2oeb_u8PMg8c1Wcrgmr9pzUCrwPdSKjC-6ERFQGJyFkJTKIBwUry4nK6736B_KX9QfFL0lk8RX6hypko8cLMKh2rMjAdhKxo4NYns_K7TcCq8b6HkQRjRIgTbRw\"}]}"
+    },
+    {
+        "time": "Sat May 24 18:01:11 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U8395de5b775cac852a5f2c471e3b9302"
+    },
+    {
+        "time": "Sat May 24 18:01:11 2025",
+        "log": "已提醒 U8395de5b775cac852a5f2c471e3b9302：200, {\"sentMessages\":[{\"id\":\"562455441071145364\",\"quoteToken\":\"SLc9mcNCbYV_rm--6PZn5D1nQ3OuDbpYVo2cEPy_7w0HYShsVofNlQZcJJJQulCjGWVM1V_CoUcvTEKjWXQXFNbcm8dktJXpTcpu8_jdtaI1f3y9Axk6LKWRGJ3CUcvrG0yxSL_sxIIDiLe4Zm0phQ\"}]}"
+    },
+    {
+        "time": "Sun May 25 18:01:05 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Sun May 25 18:01:05 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun May 25 18:01:05 2025",
+        "log": "已提醒 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"562600386839183430\",\"quoteToken\":\"lKSYiqMFXzaDUwGcT7xuz1kGsmwjAp6U0kqtY5JmuyUeTzteXdIemsraVfEORsd8NneUv1M2Pw9Wy4etAZUltF6YmsS2QeXQnuaWVYzGaxwnZKViWDpXyVrO7IEUVsdqJbGUHy9CfgmVSNK5J9egqw\"}]}"
+    },
+    {
+        "time": "Sun May 25 18:01:05 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U6ca68b765b4a9888f791ed45c2801f2a"
+    },
+    {
+        "time": "Sun May 25 18:01:05 2025",
+        "log": "已提醒 U6ca68b765b4a9888f791ed45c2801f2a：200, {\"sentMessages\":[{\"id\":\"562600387022946971\",\"quoteToken\":\"AgZ3Pj6c9QdqnSLrS92oopxLxoR8cJPlJOfOduw8dVgcWI-HkVrL6gpB_b-600t42MoGzgiWoguqAx13EhAFYv29hfGVD5jZlPPyv-RH4VTgKAlRj-96iPr985lMm_h2pkCc9WsFoqXaF5EZ6eaERQ\"}]}"
+    },
+    {
+        "time": "Sun May 25 18:01:05 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U5c947377b7d273076bf0abb95d1058e8"
+    },
+    {
+        "time": "Sun May 25 18:01:05 2025",
+        "log": "已提醒 U5c947377b7d273076bf0abb95d1058e8：200, {\"sentMessages\":[{\"id\":\"562600387325460817\",\"quoteToken\":\"9QfuPlNlStJUcGoTlko_b03bLRXyPnMTl0HUPBvsnQ838uMuasT6RuOQWpFtx_RkVUMXKqIjZfvTp0j2nPBuSDMy1b486yyED4gH1sBEqYYARzVoM70eXlhpEYfRf8w7dpuD_miQs300F-4iVz_H9g\"}]}"
+    },
+    {
+        "time": "Sun May 25 18:01:05 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U8395de5b775cac852a5f2c471e3b9302"
+    },
+    {
+        "time": "Sun May 25 18:01:06 2025",
+        "log": "已提醒 U8395de5b775cac852a5f2c471e3b9302：200, {\"sentMessages\":[{\"id\":\"562600387778183432\",\"quoteToken\":\"MOn5O0hHnrQdl2QmBcL7vpBDeo-LVKmfYOF9J_2lAbqrfg_4rm3VC8PHmLlghCM63LeWu4kdFuwsi5st5F4BWHeZNtisU4KE6ry-b83FnhwbUZHxZFKDybgNp8MEoBcpiNkOytMfgXHfB5JGVsXlsQ\"}]}"
+    },
+    {
+        "time": "Sun May 25 18:01:06 2025",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Sun May 25 18:01:06 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun May 25 18:01:06 2025",
+        "log": "已提醒 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"562600388398940209\",\"quoteToken\":\"BNKDkmMDoS2bIg6hpzMhL-x6Tl2CyQJdM6FEsklm_Br6cbYp84NNu4lJzZ5MslcUuEtdrAAlt8YriFN2u5oYnkKn3oOeQeceFz7XfY26KXB2M4_-o61Rcw4jx-FWmGvJ90frkUPjz-ddmpcNNqJGYA\"}]}"
+    },
+    {
+        "time": "Sun May 25 18:01:06 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U6ca68b765b4a9888f791ed45c2801f2a"
+    },
+    {
+        "time": "Sun May 25 18:01:06 2025",
+        "log": "已提醒 U6ca68b765b4a9888f791ed45c2801f2a：200, {\"sentMessages\":[{\"id\":\"562600388717969485\",\"quoteToken\":\"0L0eZpZsUf9Nl5lHt6ET1xpTIQ0KQlxRYXfGDVMBRckPdyXyT9piLBb-80s-PF0_1kajh1lgRtVboPk7R1T4PtiT41KmJ428kWvSUK6XZmKT0NsnESvsnWe1uSTKUWfw70JEcT-iIT_MDNun8l9ucw\"}]}"
+    },
+    {
+        "time": "Sun May 25 18:01:06 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U5c947377b7d273076bf0abb95d1058e8"
+    },
+    {
+        "time": "Sun May 25 18:01:06 2025",
+        "log": "已提醒 U5c947377b7d273076bf0abb95d1058e8：200, {\"sentMessages\":[{\"id\":\"562600388969627654\",\"quoteToken\":\"8aSokrcthpz8RNsV-zqjrHN-t18iwDtSdbOcN4xL8cdiqT5lRb6NSoiImgeQehsiGGXBK18LE_5HdUmhVZLvXU1kbXHHg8AGBT3es8vCtQbi7t5bp8z1Ag-RbUee3JHQBKNOga_MKEzyu-vAAI0LmA\"}]}"
+    },
+    {
+        "time": "Sun May 25 18:01:06 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '⚠️ 你今天還沒有上傳握力資料喔，記得量測一下吧！'}] to U8395de5b775cac852a5f2c471e3b9302"
+    },
+    {
+        "time": "Sun May 25 18:01:06 2025",
+        "log": "已提醒 U8395de5b775cac852a5f2c471e3b9302：200, {\"sentMessages\":[{\"id\":\"562600389187469387\",\"quoteToken\":\"IPlZl0x4XXQjv8UhyurbjPFFwCZe-FYOVfMGQOj9GcUjG6J6fW_OvRR0SAKM2XynDZWI3AwIWobeukmVzZwa3yvsS7V64b75OiD7AXxoEyfl-WYhWofraDHuXN3FOW7Kw8AX-ijfIHPFtiL4Q1BUKg\"}]}"
     }
 ]

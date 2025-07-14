@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+device.ino
+test.py
+get_ngrok_url.py
+daily_check.py
