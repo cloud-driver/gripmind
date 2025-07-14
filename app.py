@@ -368,6 +368,10 @@ def webhook():
 
     return jsonify({"status": "ok"})
 
+@app.route("/healthz")
+def health():
+    return "ok", 200
+
 @app.errorhandler(404)
 def page_not_found(error):
     return '''
