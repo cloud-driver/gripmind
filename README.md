@@ -29,32 +29,6 @@ GripMind 致力於以物聯網（IoT）結合智能互動，開發一套手部�
 - `get_ngrok_url.py`：擷取 ngrok 公開網址，動態更新至服務。
 - `send.py`：封裝通知功能，將訊息推播至 LINE 或其他通訊管道。
 
-### 檔案架構圖
-
-```
-gripmind/
-├── __pycache__/
-├── json/
-│   ├── data.json
-│   ├── keep.json
-│   ├── log.json
-│   └── users.json
-├── static/
-│   └── favicon.ico
-├── .gitattributes
-├── .renderignore
-├── Procfile
-├── README.md
-├── app.py
-├── daily_check.py
-├── device.ino
-├── get_ngrok_url.py
-├── render.yaml
-├── requirements.txt
-├── send.py
-└── test.py
-```
-
 ## 系統需求
 
 - Python 3.9 以上
@@ -114,16 +88,19 @@ gripmind/
 │   ├── data.json  
 │   ├── keep.json  
 │   ├── log.json  
+│   ├── dialogue.json
+│   ├── arduino_api.json  
 │   └── users.json  
 ├── static/  
-│   └── favicon.ico  
+│   ├── favicon.ico  
+│   ├── L_gainfriends_2dbarcodes_BW.png
+│   ├── apple-touch-icon.png
+│   └── apple-touch-icon-precomposed.png
 ├── .gitattributes  
 ├── .renderignore  
 ├── Procfile  
 ├── README.md  
 ├── app.py  
-├── daily_check.py  
-├── device.ino  
 ├── get_ngrok_url.py  
 ├── render.yaml  
 ├── requirements.txt  
@@ -139,10 +116,6 @@ gripmind/
 | `/callback`    | POST | 接收 LINE 的控制指令 |
 | `/webhook`    | POST | 接收 LINE 的訊息指令 |
 | `/`            | GET  | 顯示 Web UI 主頁     |
-
-## 貢獻 (Contributing)
-
-歡迎提出 Issue 或 Pull Request，請先閱讀。
 
 ## 作者 (Author)
 
