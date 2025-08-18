@@ -238,7 +238,7 @@ def save_log(text):
         
 def replay_msg(user_msg):
     response = CLIENT.models.generate_content(
-        model="gemini-2.5-flash", contents=f"請先閱讀下列資料在回答「{user_msg}」，我要3句話內的純文字\n\n {TEXT}"
+        model="gemini-2.5-flash", contents=f"請先閱讀下列資料再回答「{user_msg}」，我要3句話內的純文字，如果問題在資料中找不到答案，就用風趣的方曙回答吧\n\n {TEXT}"
     )
     return response.text
 
