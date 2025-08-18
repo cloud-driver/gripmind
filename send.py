@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+from google.genai import Client
 import json
 import requests
 import uuid
@@ -13,6 +15,10 @@ DATA_FILE = r"json/data.json"
 LOG_FILE = r"json/log.json"
 DIALOGUE_FILE = r"json/dialogue.json"
 SECRET_TOKEN = "admin0990"
+API_KEY = "AIzaSyC72Bw38usXWc6w8CSARBccvOuvFlcZ9YY"
+CLIENT = Client(api_key=API_KEY)
+TEXT = "GripMind 是什麼的答案是 GripMind 是一款結合物聯網（IoT）與智慧互動提醒功能的手部肌力復健裝置，能即時測量握力並提供每日數據回饋。GripMind 的功能有哪些的答案是 GripMind 擁有三大功能：智慧握力測量、即時 LINE 推播提醒，以及多模式手部訓練設計，能依不同族群需求提供個人化復健方案。GripMind 使用了哪些感測器的答案是 本裝置使用 HX711 壓力感測模組搭配應變規（strain gauge），透過非線性數學模型轉換為握力重量（公斤數）進行即時監測。GripMind 的資料會儲存在哪裡的答案是 所有使用者的握力紀錄會以 JSON 檔案儲存於本地端伺服器，包含 data.json（握力資料）與 users.json（裝置與 LINE 使用者綁定資訊）。裝置的提醒功能怎麼運作的答案是 系統每天會在固定時間（18:01）自動檢查是否上傳握力資料，若未達成，將透過 LINE Bot 自動推播提醒使用者進行測量。GripMind 的訓練模式有哪些的答案是 GripMind 提供多種訓練模式，包括輕壓復健、靜態握持訓練與進階挑戰訓練，未來亦可透過 LINE 設定模式以因應不同需求。這套裝置是給誰用的答案是 本裝置主要針對高齡長者、術後復健者與行動不便者設計，也適合需進行手部肌肉訓練的族群，如運動員或長期久坐者。為什麼握力訓練對失智有幫助的答案是 研究顯示握力與認知功能具高度正相關，透過穩定的手部肌力訓練可有效減緩腦部退化、降低失智與中風等風險。GripMind 的成本與售價大概是多少的答案是 裝置預估成本為 519.5 元，含塑膠外殼、感測器、LCD 顯示器等，預計依三倍定價法設定建議售價為新台幣 1800 元。這套系統的後端是怎麼設計的答案是 GripMind 系統使用 Python Flask 框架作為後端伺服器，提供握力數據接收 API，整合 LINE Messaging API 推播功能，並儲存資料於本地 JSON 檔案中。GripMind 可以記錄每天的握力變化嗎的答案是 是的，GripMind 會自動紀錄每日握力數值，使用者可以透過圖表或資料回顧自己每週、每月的訓練變化趨勢。GripMind 怎麼把感測器的數值轉換成公斤的答案是 裝置使用非線性曲線擬合公式將壓力感測器回傳的電阻值轉換為公斤數，精準度經實測驗證可應用於復健場域。LINE Bot 的提醒會每天發送嗎的答案是 系統每天固定於 18:01 檢查是否上傳握力資料，若尚未完成訓練，將由 LINE Bot 自動提醒使用者。這套裝置是否有 APP 的答案是 目前 GripMind 的使用介面以 LINE Bot 與網頁介面為主，未來將視需求推出手機 App 版本以強化互動與紀錄功能。這個產品可以商業化嗎的答案是 GripMind 已進行市場競爭力分析與成本試算，具備量產潛力，未來可導入長照機構、家庭照護或健康保險產業中。可以多台裝置連接一個 LINE 嗎的答案是 目前一個 LINE 使用者綁定一個裝置，但系統結構具備擴充性，未來可支援多裝置對一帳號的資料分辨與管理。GripMind 和市售握力器有什麼不同的答案是 市售握力器多以運動訓練為導向，無數據回饋；GripMind 主打復健照護與智慧提醒，支援低強度握力、資料紀錄與目標追蹤。資料是儲存在雲端還是本地的答案是 目前資料儲存在本地端 JSON 檔案中，未來將考慮導入雲端資料庫以支援跨裝置同步與遠端資料備份。使用 GripMind 時需要電源嗎的答案是 是的，GripMind 裝置需外部供電，可透過行動電源或 USB 接口供電，亦可根據需求改裝電池模組。我可以設定自己的每日訓練目標嗎的答案是 目前系統預設目標值為開發者指定數值，後續版本將開放使用者在 LINE 中自定訓練強度與目標。"
+
 
 class Keep():
     """讀取keep.json中的隱私資訊"""
@@ -231,22 +237,10 @@ def save_log(text):
         json.dump(logs, f, indent=4, ensure_ascii=False)
         
 def replay_msg(user_msg):
-    with open(DIALOGUE_FILE, "r", encoding="utf8") as f:
-        qa_list = json.load(f)
-        
-    for qa in qa_list:
-        if any(keyword in user_msg for keyword in qa["keywords"]):
-            return qa["answer"]
-
-    questions = [qa["question"] for qa in qa_list]
-    matches = difflib.get_close_matches(user_msg, questions, n=1, cutoff=0.65)
-
-    if matches:
-        for qa in qa_list:
-            if qa["question"] == matches[0]:
-                return qa["answer"]
-
-    return "抱歉，我目前無法回答這個問題喔，可以問我 GripMind 的功能或技術內容！"
+    response = CLIENT.models.generate_content(
+        model="gemini-2.5-flash", contents=f"請先閱讀下列資料在回答「{user_msg}」，我要3句話內的純文字\n\n {TEXT}"
+    )
+    return response.text
 
 if __name__ == "__main__":
     print("這裡是自建函式庫，你點錯了，請使用 app.py 發送資料測試")
