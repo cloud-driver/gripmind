@@ -3,7 +3,7 @@ import requests
 import secrets
 import jwt as pyjwt
 from flask import Flask, request, redirect, jsonify, session, send_from_directory, Response, render_template
-from send import Keep, send_grip_data, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id, save_log, send_push_message, replay_msg
+from send import Keep, send_grip_data, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id, save_log, send_push_message, replay_msg, clean_users
 import threading
 import json
 
@@ -28,6 +28,11 @@ def send_to_all_users():
     users = get_device_id()
     for u in users:
         send_grip_data(u, 2.3)
+    return render_template('send_to_all.html')
+
+@app.route("/clear")
+def clear():
+    clean_users()
     return render_template('send_to_all.html')
 
 @app.route("/login")
