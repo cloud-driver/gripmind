@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 from google.genai import Client
+from google.genai import types
 import json
 import requests
 import uuid
 import os
-from flask import jsonify
 from datetime import datetime
 import time
-import difflib
 
 USER_FILE = r"json/users.json"
 KEEP_FILE = r"json/keep.json"
@@ -238,7 +237,7 @@ def save_log(text):
         
 def replay_msg(user_msg):
     response = CLIENT.models.generate_content(
-        model="gemini-2.5-flash", contents=f"請先閱讀下列資料再回答「{user_msg}」，我要3句話內的純文字，如果問題在資料中找不到答案，就用風趣的方曙回答吧\n\n {TEXT}"
+        model="gemini-2.5-flash", contents=f"請先閱讀下列資料再回答「{user_msg}」，我要3句話內的純文字。如果問題在資料中找不到答案，就用風趣的方式回答吧，可以不需要按照資料來回答\n\n {TEXT}", config=types.GenerateContentConfig(thinking_config=types.ThinkingConfig(thinking_budget=0))
     )
     return response.text
 

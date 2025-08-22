@@ -2,8 +2,8 @@ import os
 import requests
 import secrets
 import jwt as pyjwt
-from flask import Flask, request, redirect, jsonify, session, send_from_directory, Response
-from send import Keep, send_grip_data, disable_get_users, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id, save_log, send_push_message, replay_msg
+from flask import Flask, request, redirect, jsonify, session, send_from_directory, Response, render_template
+from send import Keep, send_grip_data, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id, save_log, send_push_message, replay_msg
 import threading
 import json
 
@@ -17,201 +17,18 @@ REDIRECT_URI = f"{str(Keep.url())}/callback"
 
 @app.route("/")
 def home():
-    return '''
-    <!DOCTYPE html>
-    <html lang="zh-Hant">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="theme-color" content="#74ebd5">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <link rel=”apple-touch-icon” href=”static/apple-touch-icon.png”>
-        <link rel="apple-touch-icon" href="static/apple-touch-icon-precomposed.png" />
-        <title>LINE 裝置綁定登入</title>
-        <style>
-            body {
-                font-family: "Microsoft JhengHei", sans-serif;
-                background: linear-gradient(to right, #74ebd5, #acb6e5);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh;
-                margin: 0;
-                padding: 20px;
-            }
-
-            .container {
-                background-color: white;
-                padding: 30px;
-                border-radius: 15px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-                text-align: center;
-                width: 100%;
-                max-width: 400px;
-            }
-
-            h1 {
-                margin-bottom: 20px;
-                color: #333;
-                font-size: 22px;
-            }
-
-            input[type="text"] {
-                width: 100%;
-                padding: 12px;
-                font-size: 18px;
-                border: 1px solid #ccc;
-                border-radius: 8px;
-                margin-bottom: 20px;
-                box-sizing: border-box;
-            }
-
-            button {
-                background-color: #00c300;
-                color: white;
-                border: none;
-                padding: 12px 20px; 
-                border-radius: 8px;
-                font-size: 18px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-                width: 40%;
-            }
-
-            button:hover {
-                background-color: #00a000;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <h1>請綁定裝置並登入 LINE</h1>
-            <form action="/login" method="GET">
-                <input type="text" name="device_id" placeholder="裝置 ID：" required>
-                <button type="submit">登入 LINE</button>
-            </form>
-        </div>
-    </body>
-    </html>
-    '''
+    return render_template('index.html')
 
 @app.route("/secret")
 def haha():
-    return '''
-    <!DOCTYPE html>
-    <html lang="zh-Hant">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="theme-color" content="#74ebd5">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <link rel=”apple-touch-icon” href=”static/apple-touch-icon.png”>
-        <link rel="apple-touch-icon" href="static/apple-touch-icon-precomposed.png" />
-        <title>Send to all users</title>
-        <style>
-            body {
-                font-family: "Microsoft JhengHei", sans-serif;
-                background: linear-gradient(to right, #74ebd5, #acb6e5);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh;
-                margin: 0;
-                padding: 20px;
-            }
-
-            .container {
-                background-color: white;
-                padding: 30px;
-                border-radius: 15px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-                text-align: center;
-                width: 100%;
-                max-width: 400px;
-            }
-
-            button {
-                background-color: #00c300;
-                color: white;
-                border: none;
-                padding: 12px 20px;
-                border-radius: 8px;
-                font-size: 18px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-                width: 40%;
-            }
-
-            button:hover {
-                background-color: #00a000;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <form action="/send_to_all" method="GET">
-                <button type="submit">發送訊息</button>
-            </form>
-        </div>
-    </body>
-    </html>
-    '''
+    return render_template('secret.html')
 
 @app.route("/send_to_all")
 def send_to_all_users():
     users = get_device_id()
     for u in users:
         send_grip_data(u, 2.3)
-    return '''
-    <!DOCTYPE html>
-    <html lang="zh-Hant">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="theme-color" content="#74ebd5">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <link rel=”apple-touch-icon” href=”static/apple-touch-icon.png”>
-        <link rel="apple-touch-icon" href="static/apple-touch-icon-precomposed.png" />
-        <title>Send to all users</title>
-        <style>
-            body {
-                font-family: "Microsoft JhengHei", sans-serif;
-                background: linear-gradient(to right, #74ebd5, #acb6e5);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh;
-                margin: 0;
-                padding: 20px;
-            }
-
-            .container {
-                background-color: white;
-                padding: 30px;
-                border-radius: 15px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-                text-align: center;
-                width: 100%;
-                max-width: 400px;
-            }
-
-            h1 {
-                margin-bottom: 20px;
-                color: #333;
-                font-size: 22px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <h1>應該是成功了</h1>
-        </div>
-    </body>
-    </html>
-    '''
+    return render_template('send_to_all.html')
 
 @app.route("/login")
 def login_redirect():
@@ -266,60 +83,7 @@ def callback():
 
     save_user_device(user_id, device_id)
 
-    return """
-        <!DOCTYPE html>
-        <html lang="zh-Hant">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>登入完成</title>
-            <meta name="theme-color" content="#74ebd5">
-            <meta name="apple-mobile-web-app-capable" content="yes">
-            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-            <link rel=”apple-touch-icon” href=”static/apple-touch-icon.png”>
-            <link rel="apple-touch-icon" href="static/apple-touch-icon-precomposed.png" />
-            <style>
-                body {
-                    font-family: "Microsoft JhengHei", sans-serif;
-                    background: linear-gradient(to right, #74ebd5, #acb6e5);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    min-height: 100vh;
-                    margin: 0;
-                    padding: 20px;
-                }
-
-                .container {
-                    background-color: white;
-                    padding: 30px;
-                    border-radius: 15px;
-                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-                    text-align: center;
-                    width: 100%;
-                    max-width: 400px;
-                }
-
-                h1 {
-                    margin-bottom: 20px;
-                    color: #333;
-                    font-size: 22px;
-                }
-
-                p {
-                    font-size: 18px;
-                    color: #666;
-                }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <h1>已完成登入</h1>
-                <p>您可以關閉此網頁了。</p>
-            </div>
-        </body>
-        </html>
-    """
+    return render_template('callback.html')
 
 @app.route("/gripdata", methods=["POST"])
 def grip_data():
@@ -374,83 +138,7 @@ def health():
 
 @app.errorhandler(404)
 def page_not_found(error):
-    return '''
-        <!DOCTYPE html>
-        <html lang="zh-Hant">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta name="theme-color" content="#74ebd5">
-            <meta name="apple-mobile-web-app-capable" content="yes">
-            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-            <link rel=”apple-touch-icon” href=”static/apple-touch-icon.png”>
-            <link rel="apple-touch-icon" href="static/apple-touch-icon-precomposed.png" />
-            <title>LINE 裝置綁定登入</title>
-            <style>
-                body {
-                    font-family: "Microsoft JhengHei", sans-serif;
-                    background: linear-gradient(to right, #74ebd5, #acb6e5);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    min-height: 100vh;
-                    margin: 0;
-                    padding: 20px;
-                }
-
-                .container {
-                    background-color: white;
-                    padding: 30px;
-                    border-radius: 15px;
-                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-                    text-align: center;
-                    width: 100%;
-                    max-width: 400px;
-                }
-
-                h1 {
-                    margin-bottom: 20px;
-                    color: #333;
-                    font-size: 22px;
-                }
-
-                input[type="text"] {
-                    width: 100%;
-                    padding: 12px;
-                    font-size: 18px;
-                    border: 1px solid #ccc;
-                    border-radius: 8px;
-                    margin-bottom: 20px;
-                    box-sizing: border-box;
-                }
-
-                button {
-                    background-color: #869e86;
-                    color: white;
-                    border: none;
-                    padding: 12px 20px; 
-                    border-radius: 8px;
-                    font-size: 18px;
-                    cursor: pointer;
-                    transition: background-color 0.3s;
-                    width: 40%;
-                }
-
-                button:hover {
-                    background-color: #00a000;
-                }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <h1>Page Not Found!!!</h1>
-                <form action="/" method="GET">
-                    <button type="submit">Go to home page</button>
-                </form>
-            </div>
-        </body>
-        </html>
-    ''' , 404
+    return render_template('404.html'), 404
 
 if __name__ == "__main__":
     checker_thread = threading.Thread(target=daily_check_task, daemon=True)

@@ -57,22 +57,6 @@ GripMind 致力於以物聯網（IoT）結合智能互動，開發一套手部�
    ngrok authtoken $NGROK_AUTHTOKEN
    ```
 
-## 執行專案
-
-1. 啟動 ngrok：
-   ```bash
-   ngrok http 5000
-   ```
-
-2. 自動抓取 ngrok 網址
-   ```bash
-   python get_ngrok_url.py
-   ```
-
-3. 啟動後端服務：
-   ```bash
-   python app.py
-   ```
 
 ## 部署 (Deployment)
 
@@ -96,6 +80,12 @@ gripmind/
 │   ├── L_gainfriends_2dbarcodes_BW.png
 │   ├── apple-touch-icon.png
 │   └── apple-touch-icon-precomposed.png
+├── json/  
+│   ├── index.html
+│   ├── callback.html
+│   ├── send_to_all.html
+│   ├── secret.html
+│   └── 404.html
 ├── .gitattributes  
 ├── .renderignore  
 ├── Procfile  
@@ -114,7 +104,7 @@ gripmind/
 | -------------- | ---- | ---------------- |
 | `/gripdata`    | POST | 接收裝置推送的握力資料      |
 | `/callback`    | POST | 接收 LINE 的控制指令 |
-| `/webhook`    | POST | 接收 LINE 的訊息指令 |
+| `/webhook`     | POST | 接收 LINE 的訊息指令 |
 | `/`            | GET  | 顯示 Web UI 主頁     |
 
 ## 作者 (Author)
