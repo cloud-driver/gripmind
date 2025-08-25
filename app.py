@@ -3,7 +3,7 @@ import requests
 import secrets
 import jwt as pyjwt
 from flask import Flask, request, redirect, jsonify, session, send_from_directory, Response, render_template
-from send import Keep, send_grip_data, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id, save_log, send_push_message, replay_msg, clean_users
+from send import Keep, send_grip_data, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id, save_log, send_push_message, replay_msg, clean_users, DATA_FILE
 import threading
 import json
 
@@ -105,6 +105,26 @@ def grip_data():
 
     result, status_code = send_grip_data(device_id, grip)
     return jsonify(result), status_code
+
+@app.route("/history", methods=["GET"])
+def history():
+    device_id = request.args.get("device_id", "").strip()
+    labels = []
+    data = []
+    if device_id:
+        try:
+            with open(DATA_FILE, "r", encoding="utf-8") as f:
+                all_records = json.load(f)
+            device_records = [
+                r for r in all_records if r.get("device_id") == device_id
+            ]
+            device_records.sort(key=lambda x: x["timestamp"])
+            labels = [r["timestamp"] for r in device_records]
+            data   = [r["grip"] for r in device_records]
+        except Exception as e:
+            save_log(f"讀取歷史數據失敗: {e}")
+    # 傳入 template
+    return render_template("history.html", device_id=device_id, labels=labels, data=data)
 
 @app.route('/favicon.ico')
 def favicon():

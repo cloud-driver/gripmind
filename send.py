@@ -123,32 +123,31 @@ def check_done_the_goal(grip_value):
         return "你已經很努力了，明天再接再厲！"
     
 def save_grip_data(deviceid, grip_value):
-    """儲存握力資料進 json/data.json，若 device_id 存在則更新，否則新增"""
-    devices = []
-
+    """
+    儲存握力資料進 json/data.json，保留歷史數據，每次都附加新紀錄
+    """
+    # 嘗試讀取既有紀錄
+    records = []
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, "r", encoding="utf-8") as f:
             try:
-                devices = json.load(f)
+                records = json.load(f)
             except json.JSONDecodeError:
                 save_log("data.json 檔案格式錯誤，將重新初始化")
-                devices = []
+                records = []
 
-    for device in devices:
-        if device["device_id"] == deviceid:
-            device["grip"] = grip_value
-            device["timestamp"] = datetime.now().isoformat()
-            break
-    else:
-        devices.append({
-            "device_id": deviceid,
-            "grip": grip_value,
-            "timestamp": datetime.now().isoformat()
-        })
+    # 新增這次的握力紀錄
+    new_record = {
+        "device_id": deviceid,
+        "grip": grip_value,
+        "timestamp": datetime.now().isoformat()
+    }
+    records.append(new_record)
 
+    # 將所有紀錄寫回檔案
     try:
         with open(DATA_FILE, "w", encoding="utf-8") as f:
-            json.dump(devices, f, ensure_ascii=False, indent=2)
+            json.dump(records, f, ensure_ascii=False, indent=2)
         return "資料儲存成功"
     except Exception as e:
         return f"資料儲存失敗：{e}"
