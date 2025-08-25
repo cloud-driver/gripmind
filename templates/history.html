@@ -2,18 +2,18 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>歷史握力數據</title>
   <style>
     body {
       font-family: "Microsoft JhengHei", sans-serif;
       background: linear-gradient(to right, #74ebd5, #acb6e5);
+      margin: 0;
+      padding: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      margin: 0;
-      padding: 20px;
     }
     .container {
       background-color: white;
@@ -23,10 +23,13 @@
       text-align: center;
       width: 100%;
       max-width: 900px;
+      box-sizing: border-box;
     }
     h1 {
       margin-bottom: 20px;
       color: #333;
+      font-size: 1.5rem;
+      word-break: break-word;
     }
     canvas {
       width: 100% !important;
@@ -34,13 +37,34 @@
     }
     p {
       color: #333;
+      font-size: 1rem;
+    }
+
+    /* 行動裝置優化 */
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      .container {
+        padding: 20px;
+        border-radius: 10px;
+      }
+      h1 {
+        font-size: 1.2rem;
+      }
+      p {
+        font-size: 0.9rem;
+      }
+      canvas {
+        height: 300px !important;
+      }
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="container">
-    <h1>歷史握力數據</h1>
+    <h1>歷史握力數據：<strong>{{ request.args.get('device_id') }}</strong></h1>
 
     {% if data %}
       <canvas id="historyChart"></canvas>
@@ -61,6 +85,7 @@
           },
           options: {
             responsive: true,
+            maintainAspectRatio: false,
             scales: {
               x: {
                 title: { display: true, text: '時間' },
