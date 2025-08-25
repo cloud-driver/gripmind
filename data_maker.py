@@ -1,10 +1,11 @@
 import requests
+import random
 
 URL = "https://gripmind.onrender.com/gripdata"
 
 data = {
-    "device_id": "device100",
-    "grip": 2.3,
+    "device_id": "device0581",
+    "grip": random.uniform(2.0,5.0),
     "token": "admin0990"
 }
 
