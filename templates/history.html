@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>歷史握力數據查詢</title>
+  <title>歷史握力數據</title>
   <style>
     body {
       font-family: "Microsoft JhengHei", sans-serif;
@@ -17,47 +17,20 @@
     }
     .container {
       background-color: white;
-      padding: 30px;
+      padding: 40px;
       border-radius: 15px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       text-align: center;
       width: 100%;
-      max-width: 800px;
+      max-width: 900px;
     }
     h1 {
       margin-bottom: 20px;
       color: #333;
-      font-size: 22px;
-    }
-    form {
-      margin-bottom: 20px;
-    }
-    input[type="text"] {
-      width: 100%;
-      padding: 12px;
-      font-size: 18px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      box-sizing: border-box;
-    }
-    button {
-      background-color: #00c300;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 18px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      width: 40%;
-    }
-    button:hover {
-      background-color: #00a000;
     }
     canvas {
-      max-width: 100%;
-      height: auto;
+      width: 100% !important;
+      height: 500px !important;
     }
     p {
       color: #333;
@@ -67,51 +40,42 @@
 </head>
 <body>
   <div class="container">
-    <h1>歷史握力數據查詢</h1>
-    <form method="get" action="/history">
-      <label>
-        Device ID：
-        <input type="text" name="device_id" value="{{ device_id or '' }}" required>
-      </label>
-      <button type="submit">查詢</button>
-    </form>
+    <h1>歷史握力數據</h1>
 
-    {% if device_id %}
-      {% if data %}
-        <canvas id="historyChart"></canvas>
-        <script>
-          const ctx = document.getElementById('historyChart').getContext('2d');
-          new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: {{ labels|tojson }},
-              datasets: [{
-                label: 'Grip (kg)',
-                data: {{ data|tojson }},
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: false,
-                tension: 0.1
-              }]
-            },
-            options: {
-              responsive: true,
-              scales: {
-                x: {
-                  title: { display: true, text: 'Timestamp' },
-                  ticks: { autoSkip: true, maxTicksLimit: 20 }
-                },
-                y: {
-                  title: { display: true, text: 'Grip (kg)' },
-                  beginAtZero: true
-                }
+    {% if data %}
+      <canvas id="historyChart"></canvas>
+      <script>
+        const ctx = document.getElementById('historyChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: {{ labels|tojson }},
+            datasets: [{
+              label: 'Grip (kg)',
+              data: {{ data|tojson }},
+              borderColor: 'rgba(75, 192, 192, 1)',
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              fill: false,
+              tension: 0.1
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              x: {
+                title: { display: true, text: '時間' },
+                ticks: { autoSkip: true, maxTicksLimit: 20 }
+              },
+              y: {
+                title: { display: true, text: 'Grip (kg)' },
+                beginAtZero: true
               }
             }
-          });
-        </script>
-      {% else %}
-        <p>尚未找到裝置 <strong>{{ device_id }}</strong> 的任何歷史數據。</p>
-      {% endif %}
+          }
+        });
+      </script>
+    {% else %}
+      <p>尚未找到裝置 <strong>{{ request.args.get('device_id') }}</strong> 的歷史數據。</p>
     {% endif %}
   </div>
 </body>

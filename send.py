@@ -12,7 +12,6 @@ USER_FILE = r"json/users.json"
 KEEP_FILE = r"json/keep.json"
 DATA_FILE = r"json/data.json"
 LOG_FILE = r"json/log.json"
-DIALOGUE_FILE = r"json/dialogue.json"
 SECRET_TOKEN = "admin0990"
 API_KEY = "AIzaSyC72Bw38usXWc6w8CSARBccvOuvFlcZ9YY"
 CLIENT = Client(api_key=API_KEY)
@@ -140,7 +139,7 @@ def save_grip_data(deviceid, grip_value):
     new_record = {
         "device_id": deviceid,
         "grip": grip_value,
-        "timestamp": datetime.now().isoformat()
+        "timestamp": time.ctime(time.time())
     }
     records.append(new_record)
 
