@@ -47,29 +47,31 @@
             box-sizing: border-box;
         }
 
-        button {
-            background-color: #869e86;
-            color: white;
-            border: none;
-            padding: 12px 20px; 
-            border-radius: 8px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 40%;
+        button,
+        .btn {
+        display: inline-block;
+        background-color: #00c300;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-decoration: none;
+        margin: 5px;
         }
-
-        button:hover {
-            background-color: #00a000;
+        button:disabled,
+        .btn:disabled {
+        background-color: #aaa;
+        cursor: not-allowed;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Page Not Found!!!</h1>
-        <form action="/" method="GET">
-            <button type="submit">Go to home page</button>
-        </form>
+        <a href="/"><button>回主頁</button></a> 
     </div>
 </body>
 </html>

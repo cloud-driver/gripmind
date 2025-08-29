@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>修改目標值</title>
+  <style>
+    body {
+      font-family: "Microsoft JhengHei", sans-serif;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    input[type="number"] {
+      width: 300px;
+      padding: 12px;
+      font-size: 18px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+    .container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 100%;
+      max-width: 900px;
+      box-sizing: border-box;
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 1.5rem;
+      word-break: break-word;
+    }
+    button,
+    .btn {
+      display: inline-block;
+      background-color: #00c300;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-decoration: none;
+      margin: 5px;
+    }
+    button:disabled,
+    .btn:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+    /* 行動裝置優化 */
+    @media (max-width: 600px) {
+      body { padding: 10px; }
+      .container { padding: 20px; border-radius: 10px; }
+      h1 { font-size: 1.2rem; }
+      input[type="number"] { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>
+      您想要將裝置
+      <strong>{{ request.args.get('device_id') }}</strong>
+      的目標值改為：
+    </h1>
+    <form id="change_target" action="/target" method="POST">
+      <div>
+        <input
+          id="target"
+          name="target_value"
+          type="number"
+          placeholder="目標值 (kg)：0~5"
+          min="0"
+          max="5"
+          step="0.1"
+          required
+          autofocus
+        >
+      </div>
+      <input
+        type="hidden"
+        name="device_id"
+        value="{{ request.args.get('device_id') }}"
+      >
+      <button type="submit" disabled>更改</button>
+    </form>
+  </div>
+  <script>
+    const targetInput = document.getElementById('target');
+    const submitBtn   = document.querySelector('#change_target button');
+    
+    targetInput.addEventListener('input', () => {
+      const isValid = targetInput.value.trim() !== '' && targetInput.validity.valid;
+      submitBtn.disabled = !isValid;
+    });
+  </script>
+</body>
+</html>

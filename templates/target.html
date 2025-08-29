@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>歷史握力數據</title>
+  <title>修改目標值</title>
   <style>
     body {
       font-family: "Microsoft JhengHei", sans-serif;
@@ -30,10 +30,6 @@
       color: #333;
       font-size: 1.5rem;
       word-break: break-word;
-    }
-    canvas {
-      width: 100% !important;
-      height: 500px !important;
     }
     p {
       color: #333;
@@ -74,55 +70,21 @@
       p {
         font-size: 0.9rem;
       }
-      canvas {
-        height: 300px !important;
-      }
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="container">
-    <h1>歷史握力數據：<strong>{{ request.args.get('device_id') }}</strong></h1>
-
-    {% if data %}
-      <canvas id="historyChart"></canvas>
-      <script>
-        const ctx = document.getElementById('historyChart').getContext('2d');
-        new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: {{ labels|tojson }},
-            datasets: [{
-              label: 'Grip (kg)',
-              data: {{ data|tojson }},
-              borderColor: 'rgba(75, 192, 192, 1)',
-              backgroundColor: 'rgba(75, 192, 192, 0.2)',
-              fill: false,
-              tension: 0.1
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-              x: {
-                title: { display: true, text: '時間' },
-                ticks: { autoSkip: true, maxTicksLimit: 20 }
-              },
-              y: {
-                title: { display: true, text: 'Grip (kg)' },
-                beginAtZero: true
-              }
-            }
-          }
-        });
-      </script>
-    {% else %}
-      <p>尚未找到裝置 <strong>{{ request.args.get('device_id') }}</strong> 的歷史數據。</p>
-    {% endif %}
-
-  <a href="/"><button>回主頁</button></a> 
+    <h1>
+      您將裝置 
+      <strong>{{ device_id }}</strong> 
+      的目標改為 
+      <strong>{{ target_value }}</strong>kg 的結果是 
+      <strong>{{ msg }}</strong>
+    </h1>
+    <p>您可以關閉此網頁了。</p>
+    <a href="/"><button>回主頁</button></a> 
   </div>
 </body>
 </html>

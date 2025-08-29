@@ -41,12 +41,32 @@
                 font-size: 18px;
                 color: #666;
             }
+            button,
+            .btn {
+            display: inline-block;
+            background-color: #00c300;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            margin: 5px;
+            }
+            button:disabled,
+            .btn:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
+            }
         </style>
     </head>
     <body>
         <div class="container">
             <h1>已完成登入</h1>
             <p>您可以關閉此網頁了。</p>
+            <a href="/"><button>回主頁</button></a> 
         </div>
     </body>
 </html>

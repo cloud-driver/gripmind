@@ -67,9 +67,10 @@ def send_push_message(user_id, messages):
     return response.status_code, response.text
 
 def daily_check_task():
-    """每天19:00檢查所有使用者今日有無更新資料"""
+    """每天18:01檢查所有使用者今日有無更新資料"""
     while True:
         now = datetime.now()
+        time.sleep(5)
         if now.hour == 18 and now.minute == 1:
             save_log("正在執行每日資料檢查...")
 
@@ -115,11 +116,11 @@ def daily_check_task():
         else:
             time.sleep(30)
 
-def check_done_the_goal(grip_value):
-    if grip_value >= 3.0:
-        return "你已完成今日目標，繼續加油！"
+def check_done_the_goal(goal, grip_value):
+    if grip_value >= goal:
+        return f"你已完成今日目標({goal}kg)，繼續加油！"
     else:
-        return "你已經很努力了，明天再接再厲！"
+        return f"你已經很努力了，明天再接再厲！ (目標：{goal}kg)"
     
 def save_grip_data(deviceid, grip_value):
     """
@@ -170,15 +171,11 @@ def send_grip_data(device_id, grip_value):
         return {"error": f"找不到對應的裝置 ID: {device_id}"}, 404
 
     user_id = target["userId"]
+    goal = float(target["target"])
     message = {
         "type": "text",
-        "text": f"今日握力紀錄：{grip_value} kg，{check_done_the_goal(grip_value)}"
+        "text": f"今日握力紀錄：{grip_value} kg，{check_done_the_goal(goal, grip_value)}"
     }
-    if grip_value == 2.3:
-        message = {
-        "type": "text",
-        "text": f"今日握力紀錄：{grip_value} kg，{check_done_the_goal(grip_value)},(this is test of API)"
-        }
     status, response = send_push_message(user_id, [message])
     save_result = save_grip_data(device_id, grip_value)
     save_log({"message": f"已發送給 {user_id}：{status}, {response}, 資料庫儲存狀況：{save_result}"})
@@ -219,11 +216,30 @@ def save_user_device(user_id, device_id):
             user["deviceId"] = device_id
             break
     else:
-        users.append({"userId": user_id, "deviceId": device_id})
+        users.append({"userId": user_id, "deviceId": device_id, "target": 3.0})
 
     with open(USER_FILE, "w", encoding="utf-8") as f:
         json.dump(users, f, indent=4)
 
+def change_target_value(device_id, target_value):
+    if os.path.exists(USER_FILE):
+        with open(USER_FILE, "r", encoding="utf-8") as f:
+            users = json.load(f)
+    else:
+        return "查無此裝置", 404
+    
+    for user in users:
+        if user["deviceId"] == device_id:
+            user["target"] = target_value
+            break
+    else:
+        return "查無此裝置", 404
+    
+    with open(USER_FILE, "w", encoding="utf-8") as f:
+        json.dump(users, f, indent=4)
+
+    return "成功", 200
+    
 def save_log(text):
     with open(LOG_FILE, "r", encoding="utf8") as f:
         logs = json.load(f)

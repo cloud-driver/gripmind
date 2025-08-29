@@ -4,7 +4,7 @@ import requests
 import secrets
 import jwt as pyjwt
 from flask import Flask, request, redirect, jsonify, session, send_from_directory, Response, render_template
-from send import Keep, send_grip_data, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id, save_log, send_push_message, replay_msg, clean_users, DATA_FILE
+from send import Keep, send_grip_data, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id, save_log, send_push_message, replay_msg, clean_users, DATA_FILE, change_target_value
 import threading
 import json
 
@@ -124,8 +124,27 @@ def history():
             data   = [r["grip"] for r in device_records]
         except Exception as e:
             save_log(f"讀取歷史數據失敗: {e}")
-    # 傳入 template
+
     return render_template("history.html", device_id=device_id, labels=labels, data=data)
+
+@app.route("/change", methods=["GET"])
+def change():
+    device_id = request.args.get("device_id", "").strip()
+    return render_template("change.html", device_id=device_id)
+
+@app.route("/target", methods=["GET", "POST"])
+def target():
+    if request.method == "POST":
+        device_id   = request.form.get("device_id", "").strip()
+        target_value = float(request.form.get("target_value", "").strip() or 0)
+    else:
+        device_id   = request.args.get("device_id", "").strip()
+        target_value = float(request.args.get("target_value", "").strip() or 0)
+
+    msg, code = change_target_value(device_id, target_value)
+    save_log(f"對於將{device_id}的目標設為{target_value}的結果是{msg}，{code}")
+    return render_template("target.html", device_id=device_id, target_value=target_value, msg=msg), code
+
 
 @app.route('/favicon.ico')
 def favicon():

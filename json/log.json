@@ -578,5 +578,29 @@
     {
         "time": "Sun May 25 18:01:06 2025",
         "log": "已提醒 U8395de5b775cac852a5f2c471e3b9302：200, {\"sentMessages\":[{\"id\":\"562600389187469387\",\"quoteToken\":\"IPlZl0x4XXQjv8UhyurbjPFFwCZe-FYOVfMGQOj9GcUjG6J6fW_OvRR0SAKM2XynDZWI3AwIWobeukmVzZwa3yvsS7V64b75OiD7AXxoEyfl-WYhWofraDHuXN3FOW7Kw8AX-ijfIHPFtiL4Q1BUKg\"}]}"
+    },
+    {
+        "time": "Fri Aug 29 22:13:51 2025",
+        "log": "對於將device0581的目標設為3.5的結果是成功，200"
+    },
+    {
+        "time": "Fri Aug 29 22:17:31 2025",
+        "log": "對於將device0581的目標設為3.3的結果是成功，200"
+    },
+    {
+        "time": "Fri Aug 29 22:18:38 2025",
+        "log": "對於將device0581的目標設為-2.0的結果是成功，200"
+    },
+    {
+        "time": "Fri Aug 29 22:21:59 2025",
+        "log": "對於將device0581的目標設為1.0的結果是成功，200"
+    },
+    {
+        "time": "Fri Aug 29 22:29:42 2025",
+        "log": "對於將device0581的目標設為3.0的結果是成功，200"
+    },
+    {
+        "time": "Fri Aug 29 22:32:23 2025",
+        "log": "對於將device0581的目標設為3.0的結果是成功，200"
     }
 ]

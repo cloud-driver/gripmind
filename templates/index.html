@@ -63,24 +63,31 @@
 </head>
 <body>
   <div class="container">
-    <h1>請綁定裝置並登入 LINE</h1>
+    <h1>歡迎來到Gripmind</h1>
+
+    <!-- LINE 登入表單 -->
     <form id="loginForm" action="/login" method="GET">
       <input id="deviceIdInput" name="device_id" type="text" placeholder="裝置 ID：" required>
       <button id="loginBtn" type="submit" disabled>登入 LINE</button>
     </form>
-    <br>
+
+    <!-- 查看歷史數據 -->
     <a id="historyBtn" class="btn" href="#" disabled>查看歷史數據</a>
+    <!-- 新增：更改目標 -->
+    <a id="changeBtn" class="btn" href="#" disabled>更改目標</a>
   </div>
 
   <script>
     const deviceInput = document.getElementById('deviceIdInput');
-    const loginBtn = document.getElementById('loginBtn');
-    const historyBtn = document.getElementById('historyBtn');
+    const loginBtn    = document.getElementById('loginBtn');
+    const historyBtn  = document.getElementById('historyBtn');
+    const changeBtn   = document.getElementById('changeBtn');
 
     deviceInput.addEventListener('input', () => {
       const valid = deviceInput.value.trim() !== '';
-      loginBtn.disabled = !valid;
+      loginBtn.disabled   = !valid;
       historyBtn.disabled = !valid;
+      changeBtn.disabled  = !valid;
     });
 
     historyBtn.addEventListener('click', (e) => {
@@ -88,6 +95,13 @@
       const deviceId = deviceInput.value.trim();
       if (!deviceId) return;
       window.location.href = `/history?device_id=${encodeURIComponent(deviceId)}`;
+    });
+
+    changeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const deviceId = deviceInput.value.trim();
+      if (!deviceId) return;
+      window.location.href = `/change?device_id=${encodeURIComponent(deviceId)}`;
     });
   </script>
 </body>
