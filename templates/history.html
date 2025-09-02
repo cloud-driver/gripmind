@@ -25,15 +25,31 @@
       max-width: 900px;
       box-sizing: border-box;
     }
+
+    /* 圖表區塊 */
+    .chart-container {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      margin-bottom: 30px;
+    }
+    /* 只針對 .chart-container 下的 canvas 強制撐滿 */
+    .chart-container canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    /* AI 建議區塊，文字靠左 */
+    .ai-suggestion {
+      text-align: left;
+      margin-top: 20px;
+    }
+
     h1 {
       margin-bottom: 20px;
       color: #333;
       font-size: 1.5rem;
       word-break: break-word;
-    }
-    canvas {
-      width: 100% !important;
-      height: 500px !important;
     }
     p {
       color: #333;
@@ -74,8 +90,8 @@
       p {
         font-size: 0.9rem;
       }
-      canvas {
-        height: 300px !important;
+      .chart-container {
+        height: 300px;
       }
     }
   </style>
@@ -86,7 +102,9 @@
     <h1>歷史握力數據：<strong>{{ request.args.get('device_id') }}</strong></h1>
 
     {% if data %}
-      <canvas id="historyChart"></canvas>
+      <div class="chart-container">
+        <canvas id="historyChart"></canvas>
+      </div>
       <script>
         const ctx = document.getElementById('historyChart').getContext('2d');
         new Chart(ctx, {
@@ -122,7 +140,13 @@
       <p>尚未找到裝置 <strong>{{ request.args.get('device_id') }}</strong> 的歷史數據。</p>
     {% endif %}
 
-  <a href="/"><button>回主頁</button></a> 
+    <div class="ai-suggestion">
+      <h2>訓練建議：</h2>
+      <div class="markdown-body">{{ msg_html | safe }}</div>
+      <p>註：此建議為AI生成，可能會有錯誤，如有需要請及時就醫！</p>
+    </div>
+
+    <a href="/"><button>回主頁</button></a>
   </div>
 </body>
 </html>

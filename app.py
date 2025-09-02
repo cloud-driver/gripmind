@@ -4,9 +4,10 @@ import requests
 import secrets
 import jwt as pyjwt
 from flask import Flask, request, redirect, jsonify, session, send_from_directory, Response, render_template
-from send import Keep, send_grip_data, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id, save_log, send_push_message, replay_msg, clean_users, DATA_FILE, change_target_value
+from send import Keep, send_grip_data, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id, save_log, send_push_message, replay_msg, clean_users, DATA_FILE, change_target_value, ask_ai, get_user_information
 import threading
 import json
+import markdown
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -129,20 +130,50 @@ def history():
     device_id = request.args.get("device_id", "").strip()
     labels = []
     data = []
+    ai_msg = None
+
     if device_id:
         try:
             with open(DATA_FILE, "r", encoding="utf-8") as f:
                 all_records = json.load(f)
-            device_records = [
-                r for r in all_records if r.get("device_id") == device_id
-            ]
+            device_records = [r for r in all_records if r.get("device_id") == device_id]
             device_records.sort(key=lambda x: x["timestamp"])
             labels = [r["timestamp"] for r in device_records]
             data   = [r["grip"] for r in device_records]
+            user_information, code = get_user_information(device_id)
+            if code != 200:
+                target_weight, age, gender, condition, method = None
+            else:
+                target_weight, age, gender, condition, method = user_information
+
+            history_str_lines = []
+            for ts, g in zip(labels, data):
+                history_str_lines.append(f"{ts}：{g:.2f} kg")
+            history_str = "\n".join(history_str_lines)
+
+            question = (
+                f"此使用者的年齡是 {age} 歲，性別 {gender}，"
+                f"身體狀況為 {condition}，握力使用方式為 {method}，"
+                f"目標公斤數為 {target_weight} kg。\n"
+                f"以下是此使用者過去的握力歷史數據：\n"
+                f"{history_str}\n"
+                "請根據以上資訊，給我一小段針對他的握力訓練建議，主詞都用您，用台灣人會用的繁體中文。"
+            )
+
+            ai_msg_md = ask_ai(question)            # 回傳的是 Markdown 格式
+            ai_msg_html = markdown.markdown(ai_msg_md)  # 轉成 HTML
+
         except Exception as e:
             save_log(f"讀取歷史數據失敗: {e}")
+            ai_msg_html = "<p>讀取歷史資料時發生錯誤，無法提供建議。</p>"
 
-    return render_template("history.html", device_id=device_id, labels=labels, data=data)
+    return render_template(
+        "history.html",
+        device_id=device_id,
+        labels=labels,
+        data=data,
+        msg_html=ai_msg_html
+    )
 
 @app.route("/change", methods=["GET"])
 def change():
@@ -161,7 +192,6 @@ def target():
     msg, code = change_target_value(device_id, target_value)
     save_log(f"對於將{device_id}的目標設為{target_value}的結果是{msg}，{code}")
     return render_template("target.html", device_id=device_id, target_value=target_value, msg=msg), code
-
 
 @app.route('/favicon.ico')
 def favicon():

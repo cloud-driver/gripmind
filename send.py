@@ -251,9 +251,22 @@ def change_target_value(device_id, target_value):
         return "查無此裝置", 404
     
     with open(USER_FILE, "w", encoding="utf-8") as f:
-        json.dump(users, f, indent=4)
+        json.dump(users, f, indent=4, ensure_ascii=False)
 
     return "成功", 200
+
+def get_user_information(device_id):
+    if os.path.exists(USER_FILE):
+        with open(USER_FILE, "r", encoding="utf-8") as f:
+            users = json.load(f)
+    else:
+        return "查無此裝置", 404
+    
+    for user in users:
+        if user["deviceId"] == device_id:
+            return [user["target"], user["age"], user["gender"], user["condition"], user["method"]], 200
+    else:
+        return "查無此裝置", 404
     
 def save_log(text):
     with open(LOG_FILE, "r", encoding="utf8") as f:
@@ -265,8 +278,11 @@ def save_log(text):
         json.dump(logs, f, indent=4, ensure_ascii=False)
         
 def replay_msg(user_msg):
+    return ask_ai(f"請先閱讀下列資料再回答「{user_msg}」，我要3句話內的純文字，用台灣人會用的繁體中文。如果問題在資料中找不到答案，就用風趣的方式回答吧，可以不需要按照資料來回答\n\n {TEXT}")
+
+def ask_ai(question):
     response = CLIENT.models.generate_content(
-        model="gemini-2.5-flash", contents=f"請先閱讀下列資料再回答「{user_msg}」，我要3句話內的純文字。如果問題在資料中找不到答案，就用風趣的方式回答吧，可以不需要按照資料來回答\n\n {TEXT}", config=types.GenerateContentConfig(thinking_config=types.ThinkingConfig(thinking_budget=0))
+        model="gemini-2.5-flash", contents=question, config=types.GenerateContentConfig(thinking_config=types.ThinkingConfig(thinking_budget=0))
     )
     return response.text
 
