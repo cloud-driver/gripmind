@@ -203,8 +203,9 @@ def get_device_id():
         devices.append(i['deviceId'])
     return devices
 
-def save_user_device(user_id, device_id):
+def save_user_device(user_id, device_id, age, gender, condition, method):
     """新增或更新userid及其對應的deviceid"""
+    NEW = False
     if os.path.exists(USER_FILE):
         with open(USER_FILE, "r", encoding="utf-8") as f:
             users = json.load(f)
@@ -216,10 +217,24 @@ def save_user_device(user_id, device_id):
             user["deviceId"] = device_id
             break
     else:
-        users.append({"userId": user_id, "deviceId": device_id, "target": 3.0})
+        NEW = True
+        suggest_target = suggest(condition, gender)
+        users.append({"userId": user_id, 
+                      "deviceId": device_id, 
+                      "target": suggest_target, 
+                      "age": age,
+                      "gender": gender,
+                      "condition": condition,
+                      "method": method})
 
     with open(USER_FILE, "w", encoding="utf-8") as f:
-        json.dump(users, f, indent=4)
+        json.dump(users, f, indent=4, ensure_ascii=False)
+    
+    if NEW:
+        return suggest_target
+
+def suggest(condition, gender):
+    return 3.0
 
 def change_target_value(device_id, target_value):
     if os.path.exists(USER_FILE):
@@ -264,3 +279,4 @@ def clean_users():
 
 if __name__ == "__main__":
     print("這裡是自建函式庫，你點錯了，請使用 app.py 發送資料測試")
+    

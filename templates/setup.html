@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>裝置綁定與 LINE 登入</title>
+  <style>
+    body {
+      font-family: "Microsoft JhengHei", sans-serif;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+    }
+
+    h1 {
+      margin: 0 0 30px;
+      color: #333;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* 1. 三欄 Grid：年齡／性別／身體狀況 */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .form-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-item label {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 6px;
+    }
+    .form-item input[type="number"],
+    .form-item select {
+      padding: 10px 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      transition: border-color 0.2s;
+      appearance: none;
+      background-color: #fff;
+    }
+    .form-item input:focus,
+    .form-item select:focus {
+      outline: none;
+      border-color: #00c300;
+    }
+
+    /* 2. 單欄全寬：訓練方式 */
+    .form-full {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 30px;
+    }
+    .form-full label {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 6px;
+    }
+    .form-full select {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      transition: border-color 0.2s;
+      appearance: none;
+      background-color: #fff;
+    }
+    .form-full select:focus {
+      outline: none;
+      border-color: #00c300;
+    }
+
+    /* 送出按鈕 */
+    .btn-submit {
+      display: block;
+      width: 100%;
+      max-width: 200px;
+      margin: 0 auto;
+      background-color: #00c300;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 0;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .btn-submit:hover {
+      background-color: #00a000;
+    }
+    .btn-submit:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>請留下以下資料<br>讓我們更好的制定您的訓練計劃</h1>
+
+    <form id="change_target" action="/login" method="GET">
+      <!-- 三欄 Grid -->
+      <div class="form-grid">
+        <div class="form-item">
+          <label for="age">年齡</label>
+          <input
+            type="number"
+            id="age"
+            name="age"
+            placeholder="請輸入年齡"
+            min="1"
+            max="120"
+            required
+            autofocus
+          />
+        </div>
+        <div class="form-item">
+          <label for="gender">生理性別</label>
+          <select id="gender" name="gender" required>
+            <option value="" disabled selected>請選擇</option>
+            <option value="male">男性</option>
+            <option value="female">女性</option>
+          </select>
+        </div>
+        <div class="form-item">
+          <label for="condition">身體狀況</label>
+          <select id="condition" name="condition" required>
+            <option value="" disabled selected>請選擇</option>
+            <option value="normal">無異常</option>
+            <option value="tendinitis">肌腱炎</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 獨立一行，全寬 -->
+      <div class="form-full">
+        <label for="method">訓練方式</label>
+        <select id="method" name="method" required>
+          <option value="" disabled selected>請選擇訓練方式</option>
+          <option value="grip">握住</option>
+          <option value="pinch">大拇指+食指捏住</option>
+        </select>
+      </div>
+
+      <input
+        type="hidden"
+        name="device_id"
+        value="{{ request.args.get('device_id') }}"
+      />
+
+      <button type="submit" class="btn-submit">送出</button>
+    </form>
+  </div>
+
+</body>
+</html>

@@ -36,15 +36,28 @@ def clear():
     clean_users()
     return render_template('send_to_all.html')
 
-@app.route("/login")
-def login_redirect():
+@app.route("/setup")
+def setup():
     device_id = request.args.get("device_id")
     if not device_id:
         return "請提供裝置 ID", 400
+    return render_template("setup.html", device_id=device_id)
+
+@app.route("/login")
+def login_redirect():
+    device_id = request.args.get("device_id")
+    age = request.args.get("age")
+    gender = request.args.get("gender")
+    condition = request.args.get("condition")
+    method = request.args.get("method")
 
     state = secrets.token_hex(16)
     session['oauth_state'] = state
     session['device_id'] = device_id
+    session['age'] = age
+    session['gender'] = gender
+    session['condition'] = condition
+    session['method'] = method
 
     login_url = (
         f"https://access.line.me/oauth2/v2.1/authorize"
@@ -61,9 +74,13 @@ def callback():
     code = request.args.get("code")
     state = request.args.get("state")
     device_id = session.get("device_id")
+    age = request.args.get("age")
+    gender = request.args.get("gender")
+    condition = request.args.get("condition")
+    method = request.args.get("method")
 
     if not state or state != session.get("oauth_state"):
-        print("fail by state")
+        save_log("fail by state")
         return "驗證失敗，state 不一致", 400
 
     token_url = "https://api.line.me/oauth2/v2.1/token"
@@ -87,7 +104,7 @@ def callback():
     display_name = decoded.get("name", "未知")
     save_log(f"{user_id} have allready login with deviceID in {device_id}")
 
-    save_user_device(user_id, device_id)
+    save_user_device(user_id, device_id, age, gender, condition, method)
 
     return render_template('callback.html')
 
