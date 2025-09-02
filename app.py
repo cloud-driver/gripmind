@@ -105,9 +105,9 @@ def callback():
     display_name = decoded.get("name", "未知")
     save_log(f"{user_id} have allready login with deviceID in {device_id}")
 
-    save_user_device(user_id, device_id, age, gender, condition, method)
+    suggest_target = save_user_device(user_id, device_id, age, gender, condition, method)
 
-    return render_template('callback.html')
+    return render_template('callback.html', suggest_target=suggest_target)
 
 @app.route("/gripdata", methods=["POST"])
 def grip_data():
