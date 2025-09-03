@@ -614,5 +614,29 @@
     {
         "time": "Tue Sep  2 23:23:42 2025",
         "log": "對於將device0581的目標設為3.1的結果是成功，200"
+    },
+    {
+        "time": "Wed Sep  3 18:56:32 2025",
+        "log": "讀取歷史數據失敗: cannot unpack non-iterable NoneType object"
+    },
+    {
+        "time": "Wed Sep  3 18:57:35 2025",
+        "log": "讀取歷史數據失敗: cannot unpack non-iterable NoneType object"
+    },
+    {
+        "time": "Wed Sep  3 19:02:03 2025",
+        "log": "對於將device0581的目標設為4.9的結果是成功，200"
+    },
+    {
+        "time": "Wed Sep  3 19:18:54 2025",
+        "log": "讀取歷史數據失敗: cannot unpack non-iterable NoneType object"
+    },
+    {
+        "time": "Wed Sep  3 19:19:53 2025",
+        "log": "對於將device0888的目標設為3.0的結果是查無此裝置，404"
+    },
+    {
+        "time": "Wed Sep  3 19:45:51 2025",
+        "log": "對於將device0581的目標設為4.5的結果是成功，200"
     }
 ]

@@ -59,6 +59,25 @@
       background-color: #aaa;
       cursor: not-allowed;
     }
+    /* 新增：開發人員按鈕固定右下 */
+    #administrator {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 0;
+      background: none;
+    }
+    #administrator img {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    #administrator img:hover {
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
@@ -68,14 +87,20 @@
     <!-- LINE 登入表單 -->
     <form id="loginForm" action="/setup" method="GET">
       <input id="deviceIdInput" name="device_id" type="text" placeholder="裝置 ID：" required>
-      <button id="loginBtn" type="submit" disabled>登入 LINE</button>
+      <button id="loginBtn" type="submit" disabled>綁定 LINE</button>
     </form>
 
     <!-- 查看歷史數據 -->
     <a id="historyBtn" class="btn" href="#" disabled>查看歷史數據</a>
-    <!-- 新增：更改目標 -->
+
+    <!-- 更改目標 -->
     <a id="changeBtn" class="btn" href="#" disabled>更改目標</a>
   </div>
+
+  <!-- 固定右下：開發人員按鈕 -->
+  <a id="administrator" href="/secret" title="開發人員專區">
+    <img src="../static/administrator.webp" alt="開發人員">
+  </a>
 
   <script>
     const deviceInput = document.getElementById('deviceIdInput');

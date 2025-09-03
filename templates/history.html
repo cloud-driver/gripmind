@@ -33,13 +33,13 @@
       height: 500px;
       margin-bottom: 30px;
     }
-    /* 只針對 .chart-container 下的 canvas 強制撐滿 */
+    /* 強制 canvas 滿版 */
     .chart-container canvas {
       width: 100% !important;
       height: 100% !important;
     }
 
-    /* AI 建議區塊，文字靠左 */
+    /* AI 建議區塊 */
     .ai-suggestion {
       text-align: left;
       margin-top: 20px;
@@ -50,6 +50,11 @@
       color: #333;
       font-size: 1.5rem;
       word-break: break-word;
+    }
+    h2 {
+      font-size: 1.3rem;
+      color: #333;
+      margin-bottom: 10px;
     }
     p {
       color: #333;
@@ -87,11 +92,17 @@
       h1 {
         font-size: 1.2rem;
       }
+      h2 {
+        font-size: 1.1rem;
+      }
       p {
         font-size: 0.9rem;
       }
       .chart-container {
         height: 300px;
+      }
+      .ai-suggestion {
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -106,19 +117,37 @@
         <canvas id="historyChart"></canvas>
       </div>
       <script>
+        const labels = {{ labels|tojson }};
+        const dataVals = {{ data|tojson }};
+        const target = {{ target_weight or 'null' }};
+
         const ctx = document.getElementById('historyChart').getContext('2d');
+        const datasets = [{
+          label: 'Grip (kg)',
+          data: dataVals,
+          borderColor: 'rgba(75, 192, 192, 1)',
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          fill: false,
+          tension: 0.1
+        }];
+
+        if (target !== null) {
+          const targetArr = labels.map(() => target);
+          datasets.push({
+            label: '目標值',
+            data: targetArr,
+            borderColor: 'rgba(255,99,132,1)',
+            borderDash: [5, 5],
+            fill: false,
+            pointRadius: 0
+          });
+        }
+
         new Chart(ctx, {
           type: 'line',
           data: {
-            labels: {{ labels|tojson }},
-            datasets: [{
-              label: 'Grip (kg)',
-              data: {{ data|tojson }},
-              borderColor: 'rgba(75, 192, 192, 1)',
-              backgroundColor: 'rgba(75, 192, 192, 0.2)',
-              fill: false,
-              tension: 0.1
-            }]
+            labels: labels,
+            datasets: datasets
           },
           options: {
             responsive: true,

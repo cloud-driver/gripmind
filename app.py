@@ -3,15 +3,17 @@ import os
 import requests
 import secrets
 import jwt as pyjwt
-from flask import Flask, request, redirect, jsonify, session, send_from_directory, Response, render_template
+from flask import Flask, request, redirect, jsonify, session, send_from_directory, Response, render_template, url_for, flash
 from send import Keep, send_grip_data, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id, save_log, send_push_message, replay_msg, clean_users, DATA_FILE, change_target_value, ask_ai, get_user_information
 import threading
 import json
 import markdown
+import zipfile
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 app.secret_key = secrets.token_hex(16)
+app.config['SECRET_PAGE_PASSWORD'] = '09900990'
 
 CLIENT_ID = int(Keep.channel_id())
 CLIENT_SECRET = str(Keep.channel_secret())
@@ -21,9 +23,28 @@ REDIRECT_URI = f"{str(Keep.url())}/callback"
 def home():
     return render_template('index.html')
 
-@app.route("/secret")
+@app.route('/secret_login', methods=['GET', 'POST'])
+def secret_login():
+    if request.method == 'POST':
+        pwd = request.form.get('password', '')
+        if pwd == app.config['SECRET_PAGE_PASSWORD']:
+            session['secret_ok'] = True
+            return redirect(url_for('haha'))  # 登入後導回 /secret
+        else:
+            flash('密碼錯誤，請再試一次。', 'danger')
+    return render_template('secret_login.html')
+
+@app.route('/secret')
 def haha():
+    if not session.get('secret_ok'):
+        return redirect(url_for('secret_login'))
     return render_template('secret.html')
+
+@app.route('/secret_logout')
+def secret_logout():
+    session.pop('secret_ok', None)
+    flash('已登出 secret 區', 'info')
+    return redirect(url_for('secret_login'))
 
 @app.route("/send_to_all")
 def send_to_all_users():
@@ -36,6 +57,13 @@ def send_to_all_users():
 def clear():
     clean_users()
     return render_template('send_to_all.html')
+
+@app.route("/download")
+def download():
+    with zipfile.ZipFile('zip/datas.zip', mode='w') as zf:
+        zf.write('json/users.json')
+        zf.write('json/data.json')
+    return send_from_directory('zip', "datas.zip", as_attachment=True)
 
 @app.route("/setup")
 def setup():
@@ -133,6 +161,8 @@ def history():
     ai_msg = None
 
     if device_id:
+        if device_id not in get_device_id():
+            return render_template("cannot_find.html", device_id=device_id)
         try:
             with open(DATA_FILE, "r", encoding="utf-8") as f:
                 all_records = json.load(f)
@@ -160,8 +190,8 @@ def history():
                 "請根據以上資訊，給我一小段針對他的握力訓練建議，主詞都用您，用台灣人會用的繁體中文。"
             )
 
-            ai_msg_md = ask_ai(question)            # 回傳的是 Markdown 格式
-            ai_msg_html = markdown.markdown(ai_msg_md)  # 轉成 HTML
+            ai_msg_md = ask_ai(question)
+            ai_msg_html = markdown.markdown(ai_msg_md)
 
         except Exception as e:
             save_log(f"讀取歷史數據失敗: {e}")
@@ -172,12 +202,15 @@ def history():
         device_id=device_id,
         labels=labels,
         data=data,
-        msg_html=ai_msg_html
+        msg_html=ai_msg_html,
+        target_weight=target_weight
     )
 
 @app.route("/change", methods=["GET"])
 def change():
     device_id = request.args.get("device_id", "").strip()
+    if device_id not in get_device_id():
+        return render_template("cannot_find.html", device_id=device_id)
     return render_template("change.html", device_id=device_id)
 
 @app.route("/target", methods=["GET", "POST"])
