@@ -234,7 +234,26 @@ def save_user_device(user_id, device_id, age, gender, condition, method):
         return suggest_target
 
 def suggest(condition, gender):
-    return 3.0
+    # 對應表：{condition: {gender: weight}}
+    recommendation = {
+        'Trigger finger': {
+            'female': 1.9,
+            'male':   2.9
+        },
+        'Basal joint arthritis': {
+            'female': 3.7,
+            'male':   4.3
+        },
+        "De Quervain's disease": {
+            'female': 4.3,
+            'male':   5.0
+        }
+    }
+
+    try:
+        return recommendation[condition][gender]
+    except KeyError:
+        return 3.0
 
 def change_target_value(device_id, target_value):
     if os.path.exists(USER_FILE):

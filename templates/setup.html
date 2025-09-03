@@ -149,7 +149,9 @@
           <select id="condition" name="condition" required>
             <option value="" disabled selected>請選擇</option>
             <option value="normal">無異常</option>
-            <option value="tendinitis">肌腱炎</option>
+            <option value="Trigger finger">板機指</option>
+            <option value="Basal joint arthritis">腕掌關節炎</option>
+            <option value="De Quervain's disease">拇指肌腱炎</option>
           </select>
         </div>
       </div>
@@ -173,6 +175,32 @@
       <button type="submit" class="btn-submit">送出</button>
     </form>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var conditionSelect = document.getElementById('condition');
+      var methodSelect = document.getElementById('method');
+      var recommendationMap = {
+        'Trigger finger': 'pinch',
+        'Basal joint arthritis': 'grip',
+        "De Quervain's disease": 'grip'
+      };
+
+      function updateRecommendation() {
+        var selectedCondition = conditionSelect.value;
+        var recommended = recommendationMap[selectedCondition];
+        for (var i = 0; i < methodSelect.options.length; i++) {
+          var opt = methodSelect.options[i];
+          opt.text = opt.text.replace(/\s*\(建議選項\)$/, '');
+          if (opt.value === recommended) {
+            opt.text += ' (建議選項)';
+          }
+        }
+      }
+
+      conditionSelect.addEventListener('change', updateRecommendation);
+    });
+  </script>
 
 </body>
 </html>
