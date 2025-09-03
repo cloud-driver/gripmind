@@ -29,7 +29,7 @@ def secret_login():
         pwd = request.form.get('password', '')
         if pwd == app.config['SECRET_PAGE_PASSWORD']:
             session['secret_ok'] = True
-            return redirect(url_for('haha'))  # 登入後導回 /secret
+            return redirect(url_for('haha'))
         else:
             flash('密碼錯誤，請再試一次。', 'danger')
     return render_template('secret_login.html')
@@ -103,10 +103,10 @@ def callback():
     code = request.args.get("code")
     state = request.args.get("state")
     device_id = session.get("device_id")
-    age = request.args.get("age")
-    gender = request.args.get("gender")
-    condition = request.args.get("condition")
-    method = request.args.get("method")
+    age = session['age']
+    gender = session['gender']
+    condition = session['condition']
+    method = session['method']
 
     if not state or state != session.get("oauth_state"):
         save_log("fail by state")
