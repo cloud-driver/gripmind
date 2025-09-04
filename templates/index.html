@@ -67,7 +67,7 @@
     .btn:hover {
       background-color: #00a000;
     }
-    /* 新增：開發人員按鈕固定右下 */
+    /* 開發人員按鈕 */
     #administrator {
       position: fixed;
       bottom: 20px;
@@ -86,9 +86,58 @@
     #administrator img:hover {
       transform: scale(1.05);
     }
+    /* Loading 動畫 */
+    .spinner-box {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+      display: none;
+    }
+    @keyframes pulse {
+      from {
+        opacity: 1;
+        transform: scale(1);
+      }
+      to {
+        opacity: .25;
+        transform: scale(.75);
+      }
+    }
+    .pulse-container {
+      width: 120px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .pulse-bubble {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #00c300;
+    }
+    .pulse-bubble-1 {
+      animation: pulse .4s ease 0s infinite alternate;
+    }
+    .pulse-bubble-2 {
+      animation: pulse .4s ease .2s infinite alternate;
+    }
+    .pulse-bubble-3 {
+      animation: pulse .4s ease .4s infinite alternate;
+    }
   </style>
 </head>
 <body>
+  <!-- Loading 動畫 -->
+  <div class="spinner-box">
+    <div class="pulse-container">  
+      <div class="pulse-bubble pulse-bubble-1"></div>
+      <div class="pulse-bubble pulse-bubble-2"></div>
+      <div class="pulse-bubble pulse-bubble-3"></div>
+    </div>
+  </div>
+
   <div class="container">
     <h1>歡迎來到Gripmind</h1>
 
@@ -111,18 +160,20 @@
     <a id="changeBtn" class="btn" href="#">更改目標</a>
   </div>
 
-  <!-- 固定右下：開發人員按鈕 -->
+  <!-- 開發人員專區 -->
   <a id="administrator" href="/secret" title="開發人員專區">
     <img src="../static/administrator.webp" alt="開發人員">
   </a>
 
   <script>
-    const deviceInput = document.getElementById('deviceIdInput');
-    const loginBtn    = document.getElementById('loginBtn');
-    const historyBtn  = document.getElementById('historyBtn');
-    const changeBtn   = document.getElementById('changeBtn');
-    const errorMsg    = document.getElementById('errorMsg');
-    const form        = document.getElementById('loginForm');
+    const deviceInput  = document.getElementById('deviceIdInput');
+    const loginBtn     = document.getElementById('loginBtn');
+    const historyBtn   = document.getElementById('historyBtn');
+    const changeBtn    = document.getElementById('changeBtn');
+    const errorMsg     = document.getElementById('errorMsg');
+    const form         = document.getElementById('loginForm');
+    const spinnerBox   = document.querySelector('.spinner-box');
+    const container    = document.querySelector('.container');
 
     // 提交時檢查輸入是否為空
     form.addEventListener('submit', (e) => {
@@ -133,27 +184,38 @@
       }
     });
 
-    // 當使用者開始輸入時，隱藏錯誤訊息
+    // 輸入時隱藏錯誤
     deviceInput.addEventListener('input', () => {
       if (deviceInput.value.trim() !== '') {
         errorMsg.style.display = 'none';
       }
     });
 
-    // 查看歷史和更改目標也一起做guard
-    function guardNavigate(e, path) {
-      e.preventDefault();
+    function guardNavigate(path, showLoading) {
       const id = deviceInput.value.trim();
       if (!id) {
         errorMsg.style.display = 'block';
         deviceInput.focus();
         return;
       }
-      window.location.href = `${path}?device_id=${encodeURIComponent(id)}`;
+      if (showLoading) {
+        spinnerBox.style.display = 'block';
+        container.style.display = 'none';
+      }
+      setTimeout(() => {
+        window.location.href = `${path}?device_id=${encodeURIComponent(id)}`;
+      }, showLoading ? 100 : 0);
     }
 
-    historyBtn.addEventListener('click', (e) => guardNavigate(e, '/history'));
-    changeBtn.addEventListener('click', (e) => guardNavigate(e, '/change'));
+    // 綁定按鈕行為
+    historyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      guardNavigate('/history', true);
+    });
+    changeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      guardNavigate('/change', false);
+    });
   </script>
 </body>
 </html>

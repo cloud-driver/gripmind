@@ -1,1 +1,11 @@
-[]
+[
+    {
+        "userId": "U19f5c7ea1eb5591d7d374a4a62374f0f",
+        "deviceId": "device0581",
+        "target": 3.0,
+        "age": "18",
+        "gender": "male",
+        "condition": "tendinitis",
+        "method": "pinch"
+    }
+]
