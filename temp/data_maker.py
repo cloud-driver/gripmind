@@ -4,7 +4,7 @@ import time
 
 URL = "https://gripmind.onrender.com/gripdata"
 
-for i in range(10):
+for i in range(int(input("幾次："))):
     time.sleep(1)
     data = {
         "device_id": "device0581",

@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>裝置綁定與 LINE 登入</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#74ebd5" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="apple-touch-icon" href="static/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" href="static/apple-touch-icon-precomposed.png" />
+  <title>Gripmind</title>
   <style>
     body {
       font-family: "Microsoft JhengHei", sans-serif;
@@ -34,8 +39,15 @@
       font-size: 18px;
       border: 1px solid #ccc;
       border-radius: 8px;
-      margin-bottom: 15px;
+      margin-bottom: 5px;
       box-sizing: border-box;
+    }
+    .error-msg {
+      display: none;
+      color: #e74c3c;
+      font-size: 14px;
+      margin-bottom: 15px;
+      text-align: left;
     }
     button,
     .btn {
@@ -54,10 +66,6 @@
     button:hover,
     .btn:hover {
       background-color: #00a000;
-    }
-    .btn:disabled {
-      background-color: #aaa;
-      cursor: not-allowed;
     }
     /* 新增：開發人員按鈕固定右下 */
     #administrator {
@@ -85,16 +93,22 @@
     <h1>歡迎來到Gripmind</h1>
 
     <!-- LINE 登入表單 -->
-    <form id="loginForm" action="/setup" method="GET">
-      <input id="deviceIdInput" name="device_id" type="text" placeholder="裝置 ID：" required>
-      <button id="loginBtn" type="submit" disabled>綁定 LINE</button>
+    <form id="loginForm" action="/setup" method="GET" novalidate>
+      <input
+        id="deviceIdInput"
+        name="device_id"
+        type="text"
+        placeholder="裝置 ID："
+      >
+      <div id="errorMsg" class="error-msg">請輸入裝置 ID！</div>
+      <button id="loginBtn" type="submit">綁定 LINE</button>
     </form>
 
     <!-- 查看歷史數據 -->
-    <a id="historyBtn" class="btn" href="#" disabled>查看歷史數據</a>
+    <a id="historyBtn" class="btn" href="#">查看歷史數據</a>
 
     <!-- 更改目標 -->
-    <a id="changeBtn" class="btn" href="#" disabled>更改目標</a>
+    <a id="changeBtn" class="btn" href="#">更改目標</a>
   </div>
 
   <!-- 固定右下：開發人員按鈕 -->
@@ -107,27 +121,39 @@
     const loginBtn    = document.getElementById('loginBtn');
     const historyBtn  = document.getElementById('historyBtn');
     const changeBtn   = document.getElementById('changeBtn');
+    const errorMsg    = document.getElementById('errorMsg');
+    const form        = document.getElementById('loginForm');
 
+    // 提交時檢查輸入是否為空
+    form.addEventListener('submit', (e) => {
+      if (deviceInput.value.trim() === '') {
+        e.preventDefault();
+        errorMsg.style.display = 'block';
+        deviceInput.focus();
+      }
+    });
+
+    // 當使用者開始輸入時，隱藏錯誤訊息
     deviceInput.addEventListener('input', () => {
-      const valid = deviceInput.value.trim() !== '';
-      loginBtn.disabled   = !valid;
-      historyBtn.disabled = !valid;
-      changeBtn.disabled  = !valid;
+      if (deviceInput.value.trim() !== '') {
+        errorMsg.style.display = 'none';
+      }
     });
 
-    historyBtn.addEventListener('click', (e) => {
+    // 查看歷史和更改目標也一起做guard
+    function guardNavigate(e, path) {
       e.preventDefault();
-      const deviceId = deviceInput.value.trim();
-      if (!deviceId) return;
-      window.location.href = `/history?device_id=${encodeURIComponent(deviceId)}`;
-    });
+      const id = deviceInput.value.trim();
+      if (!id) {
+        errorMsg.style.display = 'block';
+        deviceInput.focus();
+        return;
+      }
+      window.location.href = `${path}?device_id=${encodeURIComponent(id)}`;
+    }
 
-    changeBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const deviceId = deviceInput.value.trim();
-      if (!deviceId) return;
-      window.location.href = `/change?device_id=${encodeURIComponent(deviceId)}`;
-    });
+    historyBtn.addEventListener('click', (e) => guardNavigate(e, '/history'));
+    changeBtn.addEventListener('click', (e) => guardNavigate(e, '/change'));
   </script>
 </body>
 </html>

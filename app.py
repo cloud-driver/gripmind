@@ -4,7 +4,7 @@ import requests
 import secrets
 import jwt as pyjwt
 from flask import Flask, request, redirect, jsonify, session, send_from_directory, Response, render_template, url_for, flash
-from send import Keep, send_grip_data, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id, save_log, send_push_message, replay_msg, clean_users, DATA_FILE, change_target_value, ask_ai, get_user_information
+from send import Keep, send_grip_data, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id, save_log, send_push_message, replay_msg, clean_users, change_target_value, ask_ai, get_user_information
 import threading
 import json
 import markdown
@@ -13,7 +13,7 @@ import zipfile
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 app.secret_key = secrets.token_hex(16)
-app.config['SECRET_PAGE_PASSWORD'] = '09900990'
+app.config['SECRET_PAGE_PASSWORD'] = Keep.spp()
 
 CLIENT_ID = int(Keep.channel_id())
 CLIENT_SECRET = str(Keep.channel_secret())
@@ -79,8 +79,8 @@ def login_redirect():
     gender = request.args.get("gender")
     condition = request.args.get("condition")
     method = request.args.get("method")
-
     state = secrets.token_hex(16)
+
     session['oauth_state'] = state
     session['device_id'] = device_id
     session['age'] = age
@@ -158,14 +158,12 @@ def history():
     device_id = request.args.get("device_id", "").strip()
     labels = []
     data = []
-    ai_msg = None
 
     if device_id:
         if device_id not in get_device_id():
             return render_template("cannot_find.html", device_id=device_id)
         try:
-            with open(DATA_FILE, "r", encoding="utf-8") as f:
-                all_records = json.load(f)
+            all_records = Keep.datas()
             device_records = [r for r in all_records if r.get("device_id") == device_id]
             device_records.sort(key=lambda x: x["timestamp"])
             labels = [r["timestamp"] for r in device_records]
@@ -231,7 +229,15 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/log')
-def log():
+def log_page():
+    if not session.get('secret_ok'):
+        return redirect(url_for('secret_login'))
+    return render_template('log.html')
+
+@app.route('/log/data')
+def log_data():
+    if not session.get('secret_ok'):
+        return redirect(url_for('secret_login'))
     data = Keep.logs()
     response = Response(
         json.dumps(data, ensure_ascii=False),

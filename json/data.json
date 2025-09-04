@@ -1,62 +1,87 @@
 [
   {
     "device_id": "device0581",
-    "grip": 4.354761019342668,
-    "timestamp": "2025-08-25T15:00:47.735934"
-  },
-  {
-    "device_id": "device0581",
-    "grip": 3.872941275438102,
-    "timestamp": "2025-08-25T15:01:48.123456"
-  },
-  {
-    "device_id": "device0581",
-    "grip": 4.129384712039482,
-    "timestamp": "2025-08-25T15:02:49.987654"
-  },
-  {
-    "device_id": "device0581",
-    "grip": 4.562937182746192,
-    "timestamp": "2025-08-25T15:03:50.564738"
-  },
-  {
-    "device_id": "device0581",
-    "grip": 3.948271635482910,
-    "timestamp": "2025-08-25T15:04:51.102938"
+    "grip": 3.94827163548291,
+    "timestamp": "20250825 15:04"
   },
   {
     "device_id": "device0581",
     "grip": 4.213546879214365,
-    "timestamp": "2025-08-25T15:05:52.847362"
+    "timestamp": "20250825 15:05"
   },
   {
     "device_id": "device0581",
     "grip": 4.781239045612345,
-    "timestamp": "2025-08-25T15:06:53.561728"
+    "timestamp": "20250825 15:06"
   },
   {
     "device_id": "device0581",
     "grip": 3.659482109384756,
-    "timestamp": "2025-08-25T15:07:54.294857"
+    "timestamp": "20250825 15:07"
   },
   {
     "device_id": "device0581",
     "grip": 4.415926535897932,
-    "timestamp": "2025-08-25T15:08:55.718273"
+    "timestamp": "20250825 15:08"
   },
   {
     "device_id": "device0581",
     "grip": 4.037182645738291,
-    "timestamp": "2025-08-25T15:09:56.829104"
+    "timestamp": "20250825 15:09"
   },
   {
     "device_id": "device0581",
     "grip": 3.994561738294561,
-    "timestamp": "2025-08-25T15:10:57.453627"
+    "timestamp": "20250825 15:10"
   },
   {
     "device_id": "device0581",
     "grip": 4.276518392847561,
-    "timestamp": "2025-08-25T15:11:58.019283"
+    "timestamp": "20250825 15:11"
+  },
+  {
+    "device_id": "device0581",
+    "grip": 4.354761019342668,
+    "timestamp": "20250901 21:35"
+  },
+  {
+    "device_id": "device0581",
+    "grip": 3.872941275438102,
+    "timestamp": "20250902 13:35"
+  },
+  {
+    "device_id": "device0581",
+    "grip": 4.129384712039482,
+    "timestamp": "20250903 21:35"
+  },
+  {
+    "device_id": "device0581",
+    "grip": 4.562937182746192,
+    "timestamp": "20250904 21:35"
+  },
+  {
+    "device_id": "device0581",
+    "grip": 3.94827163548291,
+    "timestamp": "20250825 15:04"
+  },
+  {
+    "device_id": "device0581",
+    "grip": 4.1,
+    "timestamp": "20250904 23:45"
+  },
+  {
+    "device_id": "device0581",
+    "grip": 2.3,
+    "timestamp": "20250905 01:19:00"
+  },
+  {
+    "device_id": "device0581",
+    "grip": 2.3,
+    "timestamp": "20250905 01:21:04"
+  },
+  {
+    "device_id": "device0581",
+    "grip": 2.3,
+    "timestamp": "20250905 01:35:19"
   }
 ]

@@ -638,5 +638,39 @@
     {
         "time": "Wed Sep  3 19:45:51 2025",
         "log": "對於將device0581的目標設為4.5的結果是成功，200"
+    },
+    {
+        "time": "Fri Sep  5 01:18:34 2025",
+        "log": "對於將device0581的目標設為4.8的結果是成功，200"
+    },
+    {
+        "time": "Fri Sep  5 01:19:00 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：2.3 kg，你已經很努力了，明天再接再厲！ (目標：4.8kg)'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Fri Sep  5 01:19:00 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577429893689114864\",\"quoteToken\":\"kpPVLNuyRUxyXn6hsJdDxYcbbdF7pjXLvZwzI29Vi9YXSvwGXt3kEpLAKPPDxQO_O6gkJBhg_wDBN4aoQKGkVpjZa-8z-DQfKohNXi9DsH4pDzcPdPrEr9RwUmLtTrpJlwMtjgx_0XhHrK8KKwfKpA\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Fri Sep  5 01:21:03 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：2.3 kg，你已經很努力了，明天再接再厲！ (目標：4.8kg)'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Fri Sep  5 01:21:04 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577430100266451170\",\"quoteToken\":\"m-UK4pNcU3aU-mTYNbQaEsuqqJ1EsfP_kmMAJsIAN1UWWfB-aNhVNPPr8BC8R0Z-QFZx1hwD3lnKrHWPmhmETXfj7j0z42Ge2ahvXISwe33lCF77OisZUVnt3W25loQcoWSu6SNGCQrhohehJ0pUfw\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Fri Sep  5 01:35:19 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：2.3 kg，你已經很努力了，明天再接再厲！ (目標：4.8kg)'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Fri Sep  5 01:35:19 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577431535171403862\",\"quoteToken\":\"62J44iRR-cgGC16XXb8bg3AYP-WYIjT-C6A8gXywc9bwMlV36Kaas_4fB4yCRdANWW9XNcha2rak1YmIAwqkMKTsaM8epJ3KH232m7b-HhakNWlCjxOJtS-9Y4uuSgk9gNli--pD0icI9TFq2GGfiA\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
     }
 ]
