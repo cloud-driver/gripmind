@@ -45,7 +45,7 @@ LINE_VERIFY_URL = "https://api.line.me/oauth2/v2.1/verify"
 def verify_line_id_token(id_token: str) -> dict:
     """
     方案 A：呼叫 LINE 的 /verify HTTP API 驗證 id_token
-    回傳 LINE Server 回來的 claims JSON
+    成功回傳 claims，失敗丟 ValueError 並帶 error 訊息
     """
     resp = requests.get(
         LINE_VERIFY_URL,
@@ -55,8 +55,12 @@ def verify_line_id_token(id_token: str) -> dict:
         },
         timeout=5,
     )
-    resp.raise_for_status()
-    return resp.json()
+    data = resp.json()
+    if resp.status_code != 200:
+        err = data.get("error", "unknown_error")
+        desc = data.get("error_description", "")
+        raise ValueError(f"{err}: {desc}")
+    return data
 
 def generate_oauth_state() -> str:
     """
