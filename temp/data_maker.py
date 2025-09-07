@@ -2,7 +2,7 @@ import requests
 import random
 import time
 
-URL = "https://gripmind.onrender.com/gripdata"
+URL = "http://127.0.0.1:10000/gripdata"
 
 for i in range(int(input("幾次："))):
     time.sleep(1)

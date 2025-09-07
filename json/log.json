@@ -672,5 +672,255 @@
         "log": {
             "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577431535171403862\",\"quoteToken\":\"62J44iRR-cgGC16XXb8bg3AYP-WYIjT-C6A8gXywc9bwMlV36Kaas_4fB4yCRdANWW9XNcha2rak1YmIAwqkMKTsaM8epJ3KH232m7b-HhakNWlCjxOJtS-9Y4uuSgk9gNli--pD0icI9TFq2GGfiA\"}]}, 資料庫儲存狀況：資料儲存成功"
         }
+    },
+    {
+        "time": "Sun Sep  7 19:58:36 2025",
+        "log": {
+            "error": "找不到對應的裝置 ID: device0581"
+        }
+    },
+    {
+        "time": "Sun Sep  7 19:58:37 2025",
+        "log": {
+            "error": "找不到對應的裝置 ID: device0581"
+        }
+    },
+    {
+        "time": "Sun Sep  7 19:58:38 2025",
+        "log": {
+            "error": "找不到對應的裝置 ID: device0581"
+        }
+    },
+    {
+        "time": "Sun Sep  7 19:58:39 2025",
+        "log": {
+            "error": "找不到對應的裝置 ID: device0581"
+        }
+    },
+    {
+        "time": "Sun Sep  7 19:58:40 2025",
+        "log": {
+            "error": "找不到對應的裝置 ID: device0581"
+        }
+    },
+    {
+        "time": "Sun Sep  7 19:58:41 2025",
+        "log": {
+            "error": "找不到對應的裝置 ID: device0581"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:00:58 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：2.3776427212447873 kg，你已經很努力了，明天再接再厲！ (目標：3.0kg)'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:00:58 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832745129476406\",\"quoteToken\":\"NDHz4WYFdkqmItCEk4zrVgeEbAqVgGaaXE_3Lf5aZvePPhQ8Xg_h89W99PCn9FCsmcyTVJKieV3nIHPtkCCIMJ7CHsGyDRPhzrOchdvHEmDC-y7Xr9Cm7HZhCh6GlybeQ1xMrGMuwBqX0HfoUFem8w\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:00:59 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：4.033032462994461 kg，你已完成今日目標(3.0kg)，繼續加油！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:00:59 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832747327553834\",\"quoteToken\":\"rmEkcYLH0h69O5AUViHF0j-v0d-cORjKUKd-zAQMdUJb_8WBeeM2gRlit-la_pOjnHp-J-a04XpoQ_nSkiuNA1kTRDceLviYisoIzeIOZ6ZkeC8ScPUMdKpJVoLp_t4Z1tKDoh7anYMlwB5D4ByW7A\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:00 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：2.650852511546129 kg，你已經很努力了，明天再接再厲！ (目標：3.0kg)'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:00 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832749508067978\",\"quoteToken\":\"DEto2iRCDfZuJFTLayJ7O4k1lm5zcGD-5MTmezfMMi7990GdMraTdX9LVdCj5CCT463qej2KWd_KRpFSx03pCRb406J-GYO27XknWKeFUeBzgqpra5oBtJw_2YTooZwNotQKNisTmBWJgSGuUA_zJg\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:01 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：3.416308290560004 kg，你已完成今日目標(3.0kg)，繼續加油！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:02 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832751605743960\",\"quoteToken\":\"dbfc4R8gSIfFlX5XaE42jGbKSDHwTQGGLZiuUMaZN0ybzOQIGpdFRTzs3ZPcq84DZpg8KvRgGfdO30GNRXlRe3FA7BqOCn_03SDxS3_AcJ6Jq6boyhERbtwkgwkuisiV1txPRC1JPvJez3b1IGDrsA\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:03 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：3.2038085750773844 kg，你已完成今日目標(3.0kg)，繼續加油！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:03 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832753669079502\",\"quoteToken\":\"JGl3TsPNwwI5aNCPLSykyeQozUPbtVd9g-CHk1ZJYnmrUyjV70ll0QS6HsxEy-qdtzALqDWuYtmzADW3F_17JlsYU0QFFK3O7BW2gDdjCv7MPmee9o87UI63_sMKJ-gCoDP0cH5tTFkz9cxPxOmRwA\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:04 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：3.741931884554773 kg，你已完成今日目標(3.0kg)，繼續加油！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:04 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832755548127323\",\"quoteToken\":\"RL2IVGw3BbNg8vchJp1TeG8UhFI5PcafVLU92izFJhG-e5mGA7t0_zHIoUud54OqODGKaQymKzY8V3QCirel95OfF415UikoOa9KEnFLxu8F5na4XbYZvfBH_hZi3fAkax_E4Y4A7AgdhlwwU2zQlA\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:05 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：3.2912883163317628 kg，你已完成今日目標(3.0kg)，繼續加油！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:05 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832757594947637\",\"quoteToken\":\"QvSlBUX0Kg343UkkB1YAbFBekSHgfyvZTma0MnR7NsbEwcOhmiCigWILcDcr5mcf8lRJ5vrpcK4z8-2J89PoP2zd9AXI-rCvDii6ZFgF4oj8H7-FKEcECJOn6RDr5N9FkYeNWkxa36kmQfzAri2n9w\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:06 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：4.38944718005099 kg，你已完成今日目標(3.0kg)，繼續加油！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:06 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832759590912375\",\"quoteToken\":\"Ix2KkkDkpXLWMTmopMr2X0DI1UTbakCdubWMEun3pttSr1O2JNM6p_QFu5ATIY9WcbHb7CI3xttvU5aJ-x5R6WIcNPdUhe1ye2GJywlasdy0i-gP1m_Eu8mdx7VPtLxbCRVDsmkDiZWiy4IRrMI4Qg\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:07 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：2.2567329191318772 kg，你已經很努力了，明天再接再厲！ (目標：3.0kg)'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:07 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832761268896328\",\"quoteToken\":\"rbobm1PGgJmdL-BOO6hB6yErfpr7bPgnPPfDGSc8e96IyGzCbiMIpXtYKbWJko98NjwIuYrDKqCCG8E-e__4e50GMES8XaSJxqijtwcFEFkS2jEeBTqfrT1EF0GVrOgEnAaMxIiB0F3KbwQQkLqzuw\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:08 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：3.1699498064225224 kg，你已完成今日目標(3.0kg)，繼續加油！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:09 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832763349270864\",\"quoteToken\":\"TCB90j5UhVVfV4JFT6-qkiZrw-UoV6vYy_7szDtF-GICqpq2nxw6lPHxwENxxJyiJ5cSeiLwZCvIvWUnXd9H9DLkY-kyaexmftY_-mmJ_t257Toi1wUNq8-uFK-Jvl7JX9yrfrRZXUlRPQiUVBN0rw\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:28 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：2.586750313718835 kg，你已經很努力了，明天再接再厲！ (目標：3.0kg)'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:28 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832796417687885\",\"quoteToken\":\"cPamkvlcVlfyBbs355Zx91SoSwz5_pXWP_LK-EApKNnGstcO5Icz3RhOhq-8EvfqJLNPWBsYaeJlo1Zn4EEdNAj9qeOaIfn06gaX0p-xU23rvghRNX7E8bSB15-FD2KtjGRtc3ZFwjrfwm7lfZa0Uw\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:29 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：4.006455649588091 kg，你已完成今日目標(3.0kg)，繼續加油！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:29 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832798564384957\",\"quoteToken\":\"wu2ce-cQ1nY8rXTaMfK4HO01w_mtOmaSOeYGBVwd-CV_OtzkUN_haK7KlFbNU__2SkDYm45hqjGBVVBNfEMIJN2khJkMjGp0KTx3eYq8QYZV80_LABh_raznty1eraw6z7Bf-B_-PxzPq4kYhOBwVA\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:31 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：3.8764649891670984 kg，你已完成今日目標(3.0kg)，繼續加油！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:31 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832800443695165\",\"quoteToken\":\"exrvgn0hDQjUBaSSPInh2F1wnIanONb0YOko6We9Q8zlNIEV4B-_b7_3gCHKPEyW4pRPg89rBIP4L3LK0Fu8LUfM6Tvxr7TQhUQzyfNLK-n5TiI-lEl-hbg_2VnJPDlRqK8JH7OWgjhLpYmBuDDiTQ\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:32 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：2.9869709659686814 kg，你已經很努力了，明天再接再厲！ (目標：3.0kg)'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:32 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832802255896882\",\"quoteToken\":\"aq53fVcQIVZ0dCS-2Ox3D1_YICEDa7A-gD9GvGeqnJuz4GUu7d9pMF4-oSbM3xaL32tnd2TT0pKzYMt6b6hIslYl69pd-s_IxYPo7RqUufX2lE4gic6jQVd1w-OqZublflo2viQt4MqwFV741v-PvA\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:33 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：3.2508789563657894 kg，你已完成今日目標(3.0kg)，繼續加油！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:33 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832804302717161\",\"quoteToken\":\"QwFVG2ms9liFuBNi8ymdSMibE47VKZGGZJFYDObM5_z9H-iOEIlXXg2PqStBErQG3Tbb0BKZmJ3fbRH--OpnfSvx1MHHFuQLuaJQxE2tXGQx9aHPZH6FFBe69VLvr8bnh9cH8RacucvKfxtEOwWfxA\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:34 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：2.2946019768024026 kg，你已經很努力了，明天再接再厲！ (目標：3.0kg)'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:34 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832806432899751\",\"quoteToken\":\"nBHKskDmsYsI0pKc6dDgfgcpKqFL90PkXj28w4ZUHXa3g0RtZ-MoQslXwsBXe-nm98e_Cbe0ce3Lr3g0AoFsVpdyMuopdplZO7mknXRlDLyWeJcS8GeBFtWdCW7Fx6JLHULDEEZkCLcWvOd3zIVoNg\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:35 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：3.1537762928504938 kg，你已完成今日目標(3.0kg)，繼續加油！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:35 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832808496758806\",\"quoteToken\":\"ejjuTvQ1lz7ZkCps5LE4pOurPNt85Bs5U6s-3cbPTlGBA5ecBAbBLRa7Ok7XMtn130IgneF9tkln_pJ1gbHFZJpH-l_2IamPYeJjwiza1AFdjYF0XCNJq_BeOV_d3qqXwTvg7Fr7Qa4dDeOpWF10XQ\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:36 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：2.470278842854962 kg，你已經很努力了，明天再接再厲！ (目標：3.0kg)'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:37 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832810426138737\",\"quoteToken\":\"VBxCEzhOocXl_PYY3iClCQMXavzyIFWfZjF1GDv7gM5a1lQeNfJeJYGWJIY4OZfz9x3UXlOltJ0tLnBJXmYbqEoQdNr5MfjKG9Qz-7WBZYqTS7h1GWGCEo8CKZ5DJaR1wAAlTW6O1YMkU6_qxroE_Q\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:38 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：3.374075506434182 kg，你已完成今日目標(3.0kg)，繼續加油！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:38 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832812523028843\",\"quoteToken\":\"g-LcbCXx3VQrqn5nQmI5elgd-9B45gWWhzTQZPiDawu-wRF8sbHIh8HL51MMERpRO_2Fp7sjvu_sxQi_ojDtB2FlBlaTfKe-lUylNqGrarU52xQn1FoeFuzm7WxxQDZP8g7Ce74lEx9U_VCrLqnfzw\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:39 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：2.354028259218578 kg，你已經很努力了，明天再接再厲！ (目標：3.0kg)'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:39 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832814351745279\",\"quoteToken\":\"_XebBiXFUPP8USFxbFMrmXOtUoHh4Jy-jyEbUjBQyw-2I1uAPgz1-xLbXcmDHLIzi-z8c6tiYgvjg1aZ6Yunjrhkxixv_YoFnZpjTwlDvXVLWBnGgs6JUO7HYaMEMWWq7CCq7eYrC59BkHLmydNKOQ\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:01:40 2025",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：4.322602421986193 kg，你已完成今日目標(3.0kg)，繼續加油！'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Sun Sep  7 20:01:40 2025",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"577832816348233945\",\"quoteToken\":\"bYv87DFtDTfxXssza6EKXZmOKSmmUPyQ0WGAgmZaYtjt31zvqlYtM1de0fwQRwyDtZ03B2iuE6Y2KWb1aMwJ-URTN3guyiXght3kY60dwIoBtVBx0rNltLXlnPxycy5TPf_1HD4Ja49DsDzV-e-8iw\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sun Sep  7 20:26:56 2025",
+        "log": "對於將device0581的目標設為4.2的結果是成功，200"
     }
 ]

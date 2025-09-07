@@ -3,21 +3,97 @@ import os
 import requests
 import secrets
 import jwt as pyjwt
-from flask import Flask, request, redirect, jsonify, session, send_from_directory, Response, render_template, url_for, flash
-from send import Keep, send_grip_data, save_user_device, SECRET_TOKEN, daily_check_task, get_device_id, save_log, send_push_message, replay_msg, clean_users, change_target_value, ask_ai, get_user_information
+from flask import Flask, request, redirect, jsonify, session, send_from_directory, Response, render_template, url_for, flash, abort
+from send import Keep, send_grip_data, save_user_device, daily_check_task, get_device_id, save_log, send_push_message, replay_msg, clean_users, change_target_value, ask_ai, get_user_information
 import threading
 import json
 import markdown
 import zipfile
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+from dotenv import load_dotenv
+from functools import lru_cache
+from datetime import datetime, timedelta
+
+if os.path.exists(".env"): load_dotenv()
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 app.secret_key = secrets.token_hex(16)
-app.config['SECRET_PAGE_PASSWORD'] = Keep.spp()
+app.config['SECRET_PAGE_PASSWORD'] = os.getenv('SECRET_PAGE_PASSWORD')
+app.config.update(
+  SESSION_COOKIE_SECURE=True,       # 只允許 HTTPS 傳送
+  SESSION_COOKIE_HTTPONLY=True,     # 禁止 JS 存取
+  SESSION_COOKIE_SAMESITE='Lax'     # 或 'Strict'
+)
+limiter = Limiter(
+  app=app,
+  key_func=get_remote_address,      # 以客戶端 IP 做為限流 key
+  default_limits=["200 per day", "50 per hour"]
+)
 
-CLIENT_ID = int(Keep.channel_id())
-CLIENT_SECRET = str(Keep.channel_secret())
-REDIRECT_URI = f"{str(Keep.url())}/callback"
+CLIENT_ID = int(os.getenv('LINE_LOGIN_CHANNEL_ID'))
+CLIENT_SECRET = str(os.getenv('LINE_LOGIN_CHANNEL_SECRET'))
+REDIRECT_URI = f"{str(os.getenv('URL'))}/callback"
+LINE_JWK_URI  = "https://api.line.me/oauth2/v2.1/keys"
+LINE_ISSUER   = "https://access.line.me"
+STATE_EXPIRE_MINUTES = 5
+
+# 放在所有 route 之前
+@lru_cache(maxsize=1)
+def fetch_jwk_keys():
+    """第一次向 LINE 拿 JWK，後續走 cache"""
+    resp = requests.get(LINE_JWK_URI)
+    resp.raise_for_status()
+    return resp.json()["keys"]
+
+def get_public_key_from_jwt(token: str):
+    """根據 token header 的 kid，挑出對應的 JWK 再轉成公鑰"""
+    header = pyjwt.get_unverified_header(token)
+    kid = header.get("kid")
+    for jwk in fetch_jwk_keys():
+        if jwk["kid"] == kid:
+            return pyjwt.algorithms.RSAAlgorithm.from_jwk(json.dumps(jwk))
+    raise RuntimeError(f"找不到 kid={kid} 的 JWK")
+
+def verify_line_id_token(id_token: str) -> dict:
+    """
+    透過公鑰 + audience + issuer 驗證 id_token
+    回傳解好的 claims dict
+    """
+    key = get_public_key_from_jwt(id_token)
+    return pyjwt.decode(
+        id_token,
+        key=key,
+        algorithms=["RS256"],
+        audience=str(CLIENT_ID),
+        issuer=LINE_ISSUER,
+    )
+
+def generate_oauth_state() -> str:
+    """
+    產生一個隨機 state，存到 session 並附到期時間
+    """
+    state_val = secrets.token_hex(16)
+    expires = datetime.utcnow() + timedelta(minutes=STATE_EXPIRE_MINUTES)
+    session["oauth_state"] = {
+        "value": state_val,
+        "expires_at": expires.isoformat()
+    }
+    return state_val
+
+def validate_oauth_state(received: str) -> bool:
+    """
+    驗證 callback 時帶回的 state 是否：
+      1. 存在、2. 相同、3. 未過期
+    驗證結束後，不論成功失敗，移除 session 內的 state
+    """
+    data = session.pop("oauth_state", None)
+    if not data or data.get("value") != received:
+        return False
+    expires_at = datetime.fromisoformat(data["expires_at"])
+    return datetime.utcnow() <= expires_at
+
 
 @app.route("/")
 def home():
@@ -72,6 +148,7 @@ def setup():
         return "請提供裝置 ID", 400
     return render_template("setup.html", device_id=device_id)
 
+@limiter.limit("5 per minute")
 @app.route("/login")
 def login_redirect():
     device_id = request.args.get("device_id")
@@ -79,9 +156,8 @@ def login_redirect():
     gender = request.args.get("gender")
     condition = request.args.get("condition")
     method = request.args.get("method")
-    state = secrets.token_hex(16)
+    state = generate_oauth_state()
 
-    session['oauth_state'] = state
     session['device_id'] = device_id
     session['age'] = age
     session['gender'] = gender
@@ -98,6 +174,7 @@ def login_redirect():
     )
     return redirect(login_url)
 
+@limiter.limit("10 per minute")
 @app.route("/callback")
 def callback():
     code = request.args.get("code")
@@ -108,9 +185,9 @@ def callback():
     condition = session['condition']
     method = session['method']
 
-    if not state or state != session.get("oauth_state"):
+    if not validate_oauth_state(request.args.get("state", "")):
         save_log("fail by state")
-        return "驗證失敗，state 不一致", 400
+        abort(400, "Invalid or expired OAuth state")
 
     token_url = "https://api.line.me/oauth2/v2.1/token"
     payload = {
@@ -127,8 +204,11 @@ def callback():
         return "無法獲取 Access Token", 400
 
     token_data = token_response.json()
-    id_token = token_data.get("id_token")
-    decoded = pyjwt.decode(id_token, options={"verify_signature": False}, algorithms=["HS256"])
+    try:
+        id_token = token_data["id_token"]
+        decoded = verify_line_id_token(id_token)
+    except Exception as e:
+        abort(400, f"Invalid ID token: {e}")
     user_id = decoded.get("sub")
     display_name = decoded.get("name", "未知")
     save_log(f"{user_id} have allready login with deviceID in {device_id}")
@@ -137,6 +217,7 @@ def callback():
 
     return render_template('callback.html', suggest_target=suggest_target)
 
+@limiter.limit("20 per minute")
 @app.route("/gripdata", methods=["POST"])
 def grip_data():
     data = request.get_json()
@@ -144,7 +225,7 @@ def grip_data():
     grip = data.get("grip")
     token = data.get("token")
 
-    if token != SECRET_TOKEN:
+    if token != os.getenv('SECRET_TOKEN'):
         return jsonify({"error": "驗證失敗，token 不正確"}), 403
 
     if not device_id or grip is None:
