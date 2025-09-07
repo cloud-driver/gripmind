@@ -38,37 +38,25 @@ REDIRECT_URI = f"{str(os.getenv('URL'))}/callback"
 LINE_JWK_URI  = "https://api.line.me/oauth2/v2.1/keys"
 LINE_ISSUER   = "https://access.line.me"
 STATE_EXPIRE_MINUTES = 5
+LINE_VERIFY_URL = "https://api.line.me/oauth2/v2.1/verify"
 
 # 放在所有 route 之前
 @lru_cache(maxsize=1)
-def fetch_jwk_keys():
-    """第一次向 LINE 拿 JWK，後續走 cache"""
-    resp = requests.get(LINE_JWK_URI)
-    resp.raise_for_status()
-    return resp.json()["keys"]
-
-def get_public_key_from_jwt(token: str):
-    """根據 token header 的 kid，挑出對應的 JWK 再轉成公鑰"""
-    header = pyjwt.get_unverified_header(token)
-    kid = header.get("kid")
-    for jwk in fetch_jwk_keys():
-        if jwk["kid"] == kid:
-            return pyjwt.algorithms.RSAAlgorithm.from_jwk(json.dumps(jwk))
-    raise RuntimeError(f"找不到 kid={kid} 的 JWK")
-
 def verify_line_id_token(id_token: str) -> dict:
     """
-    透過公鑰 + audience + issuer 驗證 id_token
-    回傳解好的 claims dict
+    方案 A：呼叫 LINE 的 /verify HTTP API 驗證 id_token
+    回傳 LINE Server 回來的 claims JSON
     """
-    key = get_public_key_from_jwt(id_token)
-    return pyjwt.decode(
-        id_token,
-        key=key,
-        algorithms=["RS256"],
-        audience=str(CLIENT_ID),
-        issuer=LINE_ISSUER,
+    resp = requests.get(
+        LINE_VERIFY_URL,
+        params={
+            "id_token": id_token,
+            "client_id": str(CLIENT_ID),
+        },
+        timeout=5,
     )
+    resp.raise_for_status()
+    return resp.json()
 
 def generate_oauth_state() -> str:
     """
