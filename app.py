@@ -3,15 +3,18 @@ import os
 import requests
 import secrets
 import jwt as pyjwt
-from flask import Flask, request, redirect, jsonify, session, send_from_directory, Response, render_template, url_for, flash
-from send import Keep, send_grip_data, save_user_device, daily_check_task, get_device_id, save_log, send_push_message, replay_msg, clean_users, change_target_value, ask_ai, get_user_information
 import threading
 import json
 import markdown
 import zipfile
+from flask import Flask, request, redirect, jsonify, session, send_from_directory, Response, render_template, url_for, flash
+from send import Keep, send_grip_data, save_user_device, daily_check_task, get_device_id, save_log, send_push_message, replay_msg, clean_users, change_target_value, ask_ai, get_user_information
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from dotenv import load_dotenv
+from flask_wtf.csrf import CSRFProtect, generate_csrf
+from wtforms import StringField, SubmitField
+from datetime import datetime, timedelta
 
 if os.path.exists(".env"): load_dotenv()
 
@@ -19,21 +22,21 @@ app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 app.secret_key = secrets.token_hex(16)
 app.config['SECRET_PAGE_PASSWORD'] = os.getenv('SECRET_PAGE_PASSWORD')
-app.config.update(
-  SESSION_COOKIE_SECURE=True,       # 只允許 HTTPS 傳送
-  SESSION_COOKIE_HTTPONLY=True,     # 禁止 JS 存取
-  SESSION_COOKIE_SAMESITE='Lax'     # 或 'Strict'
-)
-limiter = Limiter(
-  app=app,
-  key_func=get_remote_address,      # 以客戶端 IP 做為限流 key
-  default_limits=["200 per day", "50 per hour"]
-)
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.permanent_session_lifetime = timedelta(minutes=10)
+app.config.update(SESSION_COOKIE_SECURE=True, SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax')
+limiter = Limiter( app=app, key_func=get_remote_address, default_limits=["200 per day", "50 per hour"])
+csrf = CSRFProtect(app)
 
 CLIENT_ID = int(os.getenv('LINE_LOGIN_CHANNEL_ID'))
 CLIENT_SECRET = str(os.getenv('LINE_LOGIN_CHANNEL_SECRET'))
 REDIRECT_URI = f"{str(os.getenv('URL'))}/callback"
 
+@app.context_processor
+def inject_csrf_token():
+    return dict(csrf_token=generate_csrf)
+
+@csrf.exempt
 @app.route("/")
 def home():
     return render_template('index.html')
@@ -49,37 +52,49 @@ def secret_login():
             flash('密碼錯誤，請再試一次。', 'danger')
     return render_template('secret_login.html')
 
+@csrf.exempt
 @app.route('/secret')
 def haha():
     if not session.get('secret_ok'):
         return redirect(url_for('secret_login'))
     return render_template('secret.html')
 
+@csrf.exempt
 @app.route('/secret_logout')
 def secret_logout():
     session.pop('secret_ok', None)
     flash('已登出 secret 區', 'info')
     return redirect(url_for('secret_login'))
 
+@csrf.exempt
 @app.route("/send_to_all")
 def send_to_all_users():
+    if not session.get('secret_ok'):
+        return redirect(url_for('secret_login'))
     users = get_device_id()
     for u in users:
         send_grip_data(u, 2.3)
     return render_template('send_to_all.html')
 
+@csrf.exempt
 @app.route("/clear")
 def clear():
+    if not session.get('secret_ok'):
+        return redirect(url_for('secret_login'))
     clean_users()
     return render_template('send_to_all.html')
 
+@csrf.exempt
 @app.route("/download")
 def download():
+    if not session.get('secret_ok'):
+        return redirect(url_for('secret_login'))
     with zipfile.ZipFile('zip/datas.zip', mode='w') as zf:
         zf.write('json/users.json')
         zf.write('json/data.json')
     return send_from_directory('zip', "datas.zip", as_attachment=True)
 
+@csrf.exempt
 @app.route("/setup")
 def setup():
     device_id = request.args.get("device_id")
@@ -87,6 +102,7 @@ def setup():
         return "請提供裝置 ID", 400
     return render_template("setup.html", device_id=device_id)
 
+@csrf.exempt
 @limiter.limit("5 per minute")
 @app.route("/login")
 def login_redirect():
@@ -114,6 +130,7 @@ def login_redirect():
     )
     return redirect(login_url)
 
+@csrf.exempt
 @limiter.limit("10 per minute")
 @app.route("/callback")
 def callback():
@@ -154,6 +171,7 @@ def callback():
 
     return render_template('callback.html', suggest_target=suggest_target)
 
+@csrf.exempt
 @limiter.limit("20 per minute")
 @app.route("/gripdata", methods=["POST"])
 def grip_data():
@@ -171,6 +189,7 @@ def grip_data():
     result, status_code = send_grip_data(device_id, grip)
     return jsonify(result), status_code
 
+@csrf.exempt
 @app.route("/history", methods=["GET"])
 def history():
     device_id = request.args.get("device_id", "").strip()
@@ -229,6 +248,7 @@ def change():
         return render_template("cannot_find.html", device_id=device_id)
     return render_template("change.html", device_id=device_id)
 
+@csrf.exempt
 @app.route("/target", methods=["GET", "POST"])
 def target():
     if request.method == "POST":
@@ -242,16 +262,19 @@ def target():
     save_log(f"對於將{device_id}的目標設為{target_value}的結果是{msg}，{code}")
     return render_template("target.html", device_id=device_id, target_value=target_value, msg=msg), code
 
+@csrf.exempt
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
+@csrf.exempt
 @app.route('/log')
 def log_page():
     if not session.get('secret_ok'):
         return redirect(url_for('secret_login'))
     return render_template('log.html')
 
+@csrf.exempt
 @app.route('/log/data')
 def log_data():
     if not session.get('secret_ok'):
@@ -263,6 +286,7 @@ def log_data():
     )
     return response
 
+@csrf.exempt
 @app.route("/webhook", methods=["POST"])
 def webhook():
     body = request.get_json()
@@ -281,10 +305,12 @@ def webhook():
 
     return jsonify({"status": "ok"})
 
+@csrf.exempt
 @app.route("/healthz")
 def health():
     return "ok", 200
 
+@csrf.exempt
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html'), 404

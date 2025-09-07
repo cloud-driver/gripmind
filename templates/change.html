@@ -76,6 +76,7 @@
       的目標值改為：
     </h1>
     <form id="change_target" action="/target" method="POST">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
       <div>
         <input
           id="target"

@@ -44,17 +44,6 @@ GripMind 致力於以物聯網（IoT）結合智能互動，開發一套手部�
 ## 系統架構
 
 ```plaintext
-手部裝置
-(Arduino + ESP8266)
-     ↕
-Flask Server (app.py、send.py)
-     ↕
- JSON 資料庫
-     ↓
-daily_check.py / 
-     ↓
-LINE Bot / Web UI
-
 手部裝置 (Arduino + ESP8266)  -->  Flask Server (app.py、send.py)  <-->  JSON 資料庫
                                                 ↓
                                           LINE Bot / Web UI

@@ -206,6 +206,8 @@ def save_user_device(user_id, device_id, age, gender, condition, method):
     
     if NEW:
         return suggest_target
+    else:
+        return user["target"]
 
 def suggest(condition, gender):
     """查表並給出建議目標公斤數"""
