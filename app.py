@@ -3,7 +3,7 @@ import os
 import requests
 import secrets
 import jwt as pyjwt
-from flask import Flask, request, redirect, jsonify, session, send_from_directory, Response, render_template, url_for, flash, abort
+from flask import Flask, request, redirect, jsonify, session, send_from_directory, Response, render_template, url_for, flash
 from send import Keep, send_grip_data, save_user_device, daily_check_task, get_device_id, save_log, send_push_message, replay_msg, clean_users, change_target_value, ask_ai, get_user_information
 import threading
 import json
@@ -12,8 +12,6 @@ import zipfile
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from dotenv import load_dotenv
-from functools import lru_cache
-from datetime import datetime, timedelta
 
 if os.path.exists(".env"): load_dotenv()
 
@@ -35,57 +33,6 @@ limiter = Limiter(
 CLIENT_ID = int(os.getenv('LINE_LOGIN_CHANNEL_ID'))
 CLIENT_SECRET = str(os.getenv('LINE_LOGIN_CHANNEL_SECRET'))
 REDIRECT_URI = f"{str(os.getenv('URL'))}/callback"
-LINE_JWK_URI  = "https://api.line.me/oauth2/v2.1/keys"
-LINE_ISSUER   = "https://access.line.me"
-STATE_EXPIRE_MINUTES = 5
-LINE_VERIFY_URL = "https://api.line.me/oauth2/v2.1/verify"
-
-# 放在所有 route 之前
-@lru_cache(maxsize=1)
-def verify_line_id_token(id_token: str) -> dict:
-    """
-    方案 A：呼叫 LINE 的 /verify HTTP API 驗證 id_token
-    成功回傳 claims，失敗丟 ValueError 並帶 error 訊息
-    """
-    resp = requests.get(
-        LINE_VERIFY_URL,
-        params={
-            "id_token": id_token,
-            "client_id": str(CLIENT_ID),
-        },
-        timeout=5,
-    )
-    data = resp.json()
-    if resp.status_code != 200:
-        err = data.get("error", "unknown_error")
-        desc = data.get("error_description", "")
-        raise ValueError(f"{err}: {desc}")
-    return data
-
-def generate_oauth_state() -> str:
-    """
-    產生一個隨機 state，存到 session 並附到期時間
-    """
-    state_val = secrets.token_hex(16)
-    expires = datetime.utcnow() + timedelta(minutes=STATE_EXPIRE_MINUTES)
-    session["oauth_state"] = {
-        "value": state_val,
-        "expires_at": expires.isoformat()
-    }
-    return state_val
-
-def validate_oauth_state(received: str) -> bool:
-    """
-    驗證 callback 時帶回的 state 是否：
-      1. 存在、2. 相同、3. 未過期
-    驗證結束後，不論成功失敗，移除 session 內的 state
-    """
-    data = session.pop("oauth_state", None)
-    if not data or data.get("value") != received:
-        return False
-    expires_at = datetime.fromisoformat(data["expires_at"])
-    return datetime.utcnow() <= expires_at
-
 
 @app.route("/")
 def home():
@@ -148,8 +95,9 @@ def login_redirect():
     gender = request.args.get("gender")
     condition = request.args.get("condition")
     method = request.args.get("method")
-    state = generate_oauth_state()
+    state = secrets.token_hex(16)
 
+    session['oauth_state'] = state
     session['device_id'] = device_id
     session['age'] = age
     session['gender'] = gender
@@ -177,9 +125,9 @@ def callback():
     condition = session['condition']
     method = session['method']
 
-    if not validate_oauth_state(request.args.get("state", "")):
+    if not state or state != session.get("oauth_state"):
         save_log("fail by state")
-        abort(400, "Invalid or expired OAuth state")
+        return "驗證失敗，state 不一致", 400
 
     token_url = "https://api.line.me/oauth2/v2.1/token"
     payload = {
@@ -196,11 +144,8 @@ def callback():
         return "無法獲取 Access Token", 400
 
     token_data = token_response.json()
-    try:
-        id_token = token_data["id_token"]
-        decoded = verify_line_id_token(id_token)
-    except Exception as e:
-        abort(400, f"Invalid ID token: {e}")
+    id_token = token_data.get("id_token")
+    decoded = pyjwt.decode(id_token, options={"verify_signature": False}, algorithms=["HS256"])
     user_id = decoded.get("sub")
     display_name = decoded.get("name", "未知")
     save_log(f"{user_id} have allready login with deviceID in {device_id}")
