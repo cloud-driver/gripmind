@@ -13,8 +13,7 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from dotenv import load_dotenv
 from flask_wtf.csrf import CSRFProtect, generate_csrf
-from wtforms import StringField, SubmitField
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 if os.path.exists(".env"): load_dotenv()
 
