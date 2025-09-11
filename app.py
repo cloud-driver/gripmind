@@ -305,6 +305,47 @@ def webhook():
     return jsonify({"status": "ok"})
 
 @csrf.exempt
+@app.route("/test", methods=["POST"])
+def grip_data():
+    return render_template('test.html')
+
+@csrf.exempt
+@limiter.limit("100 per minute")
+@app.route("/test/api", methods=["POST"])
+def grip_data():
+    data = request.get_json()
+    student_id = data.get("student_id")
+    token = data.get("token")
+
+    if token != os.getenv('SECRET_TOKEN'):
+        return jsonify({"error": "驗證失敗，token 不正確"}), 403
+    
+    url = 'https://script.google.com/macros/s/AKfycbx1EXa9t7thW7iqGGYZQJj51zClFVMl_wxNTSkq425Y-cF4YWimcljmEziRjdsx7Kdr/exec'
+    post_data_payload = {
+        'action': 'writeData', # Example action, adjust if your script uses a different one
+        'student_id': student_id, # Replace with the actual student ID
+        'column': 'F', # Column to write to
+        'value': 'TRUE' # Value to write
+    }
+
+    json_data_string = json.dumps(post_data_payload)
+    post_url = f'{url}?data={json_data_string}'
+
+    try:
+        response = requests.post(post_url)
+        if response.status_code == 200:
+            save_log("Data successfully written to the sheet.")
+            save_log("Response:", response.text)
+        else:
+            save_log(f"Failed to write data. Status code: {response.status_code}")
+            save_log("Response:", response.text)
+
+    except requests.exceptions.RequestException as e:
+        save_log(f"An error occurred during the request: {e}")
+
+    return jsonify(response.text), response.status_code
+
+@csrf.exempt
 @app.route("/healthz")
 def health():
     return "ok", 200
