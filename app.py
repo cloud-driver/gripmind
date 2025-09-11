@@ -306,6 +306,8 @@ def webhook():
 @csrf.exempt
 @app.route("/test")
 def test():
+    if not session.get('secret_ok'):
+        return redirect(url_for('secret_login'))
     return render_template('test.html')
 
 @csrf.exempt
