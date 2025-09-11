@@ -306,13 +306,13 @@ def webhook():
 
 @csrf.exempt
 @app.route("/test", methods=["POST"])
-def grip_data():
+def test():
     return render_template('test.html')
 
 @csrf.exempt
 @limiter.limit("100 per minute")
 @app.route("/test/api", methods=["POST"])
-def grip_data():
+def test_api():
     data = request.get_json()
     student_id = data.get("student_id")
     token = data.get("token")
