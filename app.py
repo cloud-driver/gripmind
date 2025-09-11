@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import requests
 import secrets
@@ -305,7 +304,7 @@ def webhook():
     return jsonify({"status": "ok"})
 
 @csrf.exempt
-@app.route("/test", methods=["POST"])
+@app.route("/test")
 def test():
     return render_template('test.html')
 
