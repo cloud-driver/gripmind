@@ -344,7 +344,7 @@ def test_api():
     except requests.exceptions.RequestException as e:
         save_log(f"An error occurred during the request: {e}")
 
-    return jsonify(response.text), response.status_code
+    return jsonify(response.text), 200
 
 @csrf.exempt
 @app.route("/healthz")
