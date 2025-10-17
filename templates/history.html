@@ -79,6 +79,47 @@
       background-color: #aaa;
       cursor: not-allowed;
     }
+    
+    /* Loading 動畫 */
+    .spinner-box {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+      display: none;
+    }
+    @keyframes pulse {
+      from {
+        opacity: 1;
+        transform: scale(1);
+      }
+      to {
+        opacity: .25;
+        transform: scale(.75);
+      }
+    }
+    .pulse-container {
+      width: 120px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .pulse-bubble {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #00c300;
+    }
+    .pulse-bubble-1 {
+      animation: pulse .4s ease 0s infinite alternate;
+    }
+    .pulse-bubble-2 {
+      animation: pulse .4s ease .2s infinite alternate;
+    }
+    .pulse-bubble-3 {
+      animation: pulse .4s ease .4s infinite alternate;
+    }
 
     /* 行動裝置優化 */
     @media (max-width: 600px) {
@@ -109,6 +150,14 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+  <div class="spinner-box">
+    <div class="pulse-container">  
+      <div class="pulse-bubble pulse-bubble-1"></div>
+      <div class="pulse-bubble pulse-bubble-2"></div>
+      <div class="pulse-bubble pulse-bubble-3"></div>
+    </div>
+  </div>
+
   <div class="container">
     <h1>歷史握力數據：<strong>{{ request.args.get('device_id') }}</strong></h1>
 
@@ -171,11 +220,64 @@
 
     <div class="ai-suggestion">
       <h2>訓練建議：</h2>
-      <div class="markdown-body">{{ msg_html | safe }}</div>
+      <div id="ai-result" class="markdown-body"></div>
+      {% if is_logged_in %}
+        <p>剩餘點數：<span id="user-points">{{ user_points }}</span></p>
+      {% endif %}
+      <button id="analyze-btn">
+        {% if is_logged_in %}
+          AI 分析 (消耗 30 點)
+        {% else %}
+          登入以使用 AI 分析
+        {% endif %}
+      </button>
       <p>註：此建議為AI生成，可能會有錯誤，如有需要請及時就醫！</p>
     </div>
 
     <a href="/"><button>回主頁</button></a>
   </div>
+
+  <script>
+    document.getElementById('analyze-btn').addEventListener('click', function() {
+        var analyzeBtn = this;
+        var spinner = document.querySelector('.spinner-box');
+        var is_logged_in = {{ is_logged_in|tojson }};
+        var deviceId = '{{ request.args.get('device_id') }}';
+
+        if (!is_logged_in) {
+            window.location.href = '/setup?device_id=' + deviceId;
+            return;
+        }
+
+        analyzeBtn.style.display = 'none';
+        spinner.style.display = 'block';
+
+        fetch('/analyze', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': '{{ csrf_token() }}'
+            },
+            body: 'device_id=' + deviceId
+        })
+        .then(response => response.json())
+        .then(data => {
+            spinner.style.display = 'none';
+            if (data.error) {
+                document.getElementById('ai-result').innerHTML = '<p>' + data.error + '</p>';
+                analyzeBtn.style.display = 'inline-block';
+            } else {
+                document.getElementById('ai-result').innerHTML = data.analysis;
+                document.getElementById('user-points').innerText = data.new_points;
+            }
+        })
+        .catch(error => {
+            spinner.style.display = 'none';
+            analyzeBtn.style.display = 'inline-block';
+            document.getElementById('ai-result').innerHTML = '<p>分析時發生錯誤，請稍後再試。</p>';
+            console.error('Error:', error);
+        });
+    });
+  </script>
 </body>
 </html>

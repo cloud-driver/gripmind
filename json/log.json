@@ -926,5 +926,57 @@
     {
         "time": "Mon Sep  8 00:42:52 2025",
         "log": "對於將device0581的目標設為4.1的結果是成功，200"
+    },
+    {
+        "time": "Fri Oct 17 18:06:56 2025",
+        "log": "讀取歷史數據失敗: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': \"Quota exceeded for quota metric 'Generate Content API requests per minute' and limit 'GenerateContent request limit per minute for a region' of service 'generativelanguage.googleapis.com' for consumer 'project_number:468201922985'.\", 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'RATE_LIMIT_EXCEEDED', 'domain': 'googleapis.com', 'metadata': {'quota_unit': '1/min/{project}/{region}', 'service': 'generativelanguage.googleapis.com', 'quota_location': 'asia-east1', 'quota_limit': 'GenerateContentRequestsPerMinutePerProjectPerRegion', 'quota_limit_value': '0', 'quota_metric': 'generativelanguage.googleapis.com/generate_content_requests', 'consumer': 'projects/468201922985'}}, {'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Request a higher quota limit.', 'url': 'https://cloud.google.com/docs/quotas/help/request_increase'}]}]}}"
+    },
+    {
+        "time": "Fri Oct 17 18:21:23 2025",
+        "log": "U19f5c7ea1eb5591d7d374a4a62374f0f have allready login with deviceID in test"
+    },
+    {
+        "time": "Fri Oct 17 18:29:43 2025",
+        "log": "讀取歷史數據失敗: too many values to unpack (expected 5)"
+    },
+    {
+        "time": "Fri Oct 17 20:17:43 2025",
+        "log": "正在檢查 device_id: 'device0581'，目前系統已知的裝置有: ['test']"
+    },
+    {
+        "time": "Fri Oct 17 20:17:46 2025",
+        "log": "正在檢查 device_id: 'device0581'，目前系統已知的裝置有: ['test']"
+    },
+    {
+        "time": "Fri Oct 17 20:19:39 2025",
+        "log": "正在檢查 device_id: 'device0581'，目前系統已知的裝置有: ['device0581']"
+    },
+    {
+        "time": "Fri Oct 17 20:23:27 2025",
+        "log": "正在檢查 device_id: 'device0581'，目前系統已知的裝置有: ['device0581']"
+    },
+    {
+        "time": "Fri Oct 17 20:23:48 2025",
+        "log": "U19f5c7ea1eb5591d7d374a4a62374f0f have allready login with deviceID in device0581"
+    },
+    {
+        "time": "Fri Oct 17 20:23:48 2025",
+        "log": "正在檢查 device_id: 'device0581'，目前系統已知的裝置有: ['device0581']"
+    },
+    {
+        "time": "Fri Oct 17 20:25:36 2025",
+        "log": "正在檢查 device_id: 'device0581'，目前系統已知的裝置有: ['device0581']"
+    },
+    {
+        "time": "Fri Oct 17 20:25:50 2025",
+        "log": "U19f5c7ea1eb5591d7d374a4a62374f0f have allready login with deviceID in device0581"
+    },
+    {
+        "time": "Fri Oct 17 20:25:50 2025",
+        "log": "正在檢查 device_id: 'device0581'，目前系統已知的裝置有: ['device0581']"
+    },
+    {
+        "time": "Fri Oct 17 20:29:46 2025",
+        "log": "正在檢查 device_id: 'device0581'，目前系統已知的裝置有: ['device0581']"
     }
 ]

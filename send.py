@@ -193,21 +193,68 @@ def save_user_device(user_id, device_id, age, gender, condition, method):
     else:
         NEW = True
         suggest_target = suggest(condition, gender)
-        users.append({"userId": user_id, 
-                      "deviceId": device_id, 
-                      "target": suggest_target, 
-                      "age": age,
-                      "gender": gender,
-                      "condition": condition,
-                      "method": method})
+        if user_id == "U19f5c7ea1eb5591d7d374a4a62374f0f":  # 開發者測試帳號
+            users.append({"userId": user_id,
+                        "deviceId": device_id,
+                        "target": suggest_target,
+                        "age": age,
+                        "gender": gender,
+                        "condition": condition,
+                        "method": method,
+                        "points": 1000000000000})
+        else:
+            users.append({"userId": user_id,
+                        "deviceId": device_id,
+                        "target": suggest_target,
+                        "age": age,
+                        "gender": gender,
+                        "condition": condition,
+                        "method": method,
+                        "points": 100})
 
     with open(USER_FILE, "w", encoding="utf-8") as f:
         json.dump(users, f, indent=4, ensure_ascii=False)
-    
+
     if NEW:
         return suggest_target
     else:
         return user["target"]
+
+def get_user_points(user_id):
+    """取得使用者剩餘點數"""
+    if os.path.exists(USER_FILE):
+        with open(USER_FILE, "r", encoding="utf-8") as f:
+            users = json.load(f)
+    else:
+        return 0
+
+    for user in users:
+        if user["userId"] == user_id:
+            return user.get("points", 0)
+    return 0
+
+def deduct_user_points(user_id, points_to_deduct):
+    """扣除使用者點數"""
+    if os.path.exists(USER_FILE):
+        with open(USER_FILE, "r", encoding="utf-8") as f:
+            users = json.load(f)
+    else:
+        return False, "找不到使用者檔案"
+
+    user_found = False
+    for user in users:
+        if user["userId"] == user_id:
+            user_found = True
+            if user.get("points", 0) >= points_to_deduct:
+                user["points"] -= points_to_deduct
+                with open(USER_FILE, "w", encoding="utf-8") as f:
+                    json.dump(users, f, indent=4, ensure_ascii=False)
+                return True, "點數扣除成功"
+            else:
+                return False, "點數不足"
+
+    if not user_found:
+        return False, "找不到使用者"
 
 def suggest(condition, gender):
     """查表並給出建議目標公斤數"""
@@ -258,10 +305,10 @@ def get_user_information(device_id):
             users = json.load(f)
     else:
         return "查無此裝置", 404
-    
+
     for user in users:
         if user["deviceId"] == device_id:
-            return [user["target"], user["age"], user["gender"], user["condition"], user["method"]], 200
+            return [user["target"], user["age"], user["gender"], user["condition"], user["method"], user.get("points", 0)], 200 # 新增回傳點數
     else:
         return "查無此裝置", 404
     

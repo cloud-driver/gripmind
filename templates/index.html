@@ -139,24 +139,26 @@
   </div>
 
   <div class="container">
-    <h1>歡迎來到Gripmind</h1>
+    {% if user_name %}
+        <h1>您好，{{ user_name }}</h1>
+        <a href="/logout" class="btn">登出</a>
+    {% else %}
+        <h1>歡迎來到Gripmind</h1>
+    {% endif %}
 
-    <!-- LINE 登入表單 -->
     <form id="loginForm" action="/setup" method="GET" novalidate>
-      <input
-        id="deviceIdInput"
-        name="device_id"
-        type="text"
-        placeholder="裝置 ID："
-      >
-      <div id="errorMsg" class="error-msg">請輸入裝置 ID！</div>
-      <button id="loginBtn" type="submit">綁定 LINE</button>
+        <input
+            id="deviceIdInput"
+            name="device_id"
+            type="text"
+            placeholder="裝置 ID："
+        >
+        <div id="errorMsg" class="error-msg">請輸入裝置 ID！</div>
+        <button id="loginBtn" type="submit">綁定 LINE</button>
     </form>
 
-    <!-- 查看歷史數據 -->
     <a id="historyBtn" class="btn" href="#">查看歷史數據</a>
 
-    <!-- 更改目標 -->
     <a id="changeBtn" class="btn" href="#">更改目標</a>
   </div>
 
