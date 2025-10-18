@@ -245,7 +245,7 @@
         var deviceId = '{{ request.args.get('device_id') }}';
 
         if (!is_logged_in) {
-            window.location.href = '/setup?device_id=' + deviceId;
+            window.location.href = '/login?device_id=' + deviceId;
             return;
         }
 

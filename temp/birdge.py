@@ -3,7 +3,7 @@ import serial
 import time
 
 # 設定 Arduino 串列埠
-arduino_port = 'COM3'
+arduino_port = 'COM4'
 baud_rate = 9600
 URL = "https://gripmind.onrender.com/gripdata"
 
@@ -24,7 +24,7 @@ try:
                 # 將資料轉換為數字型態
                 grip_value = float(raw_data)
                 send_data = {
-                    "device_id": "device100",
+                    "device_id": "device0581",
                     "grip": grip_value,
                     "token": "admin0990"
                 }
