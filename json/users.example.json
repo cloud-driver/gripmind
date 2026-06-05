@@ -1,0 +1,12 @@
+[
+  {
+    "userId": "U_DEMO_USER_ID",
+    "deviceId": "device_demo_001",
+    "target": 3.5,
+    "age": "20",
+    "gender": "male",
+    "condition": "Trigger finger",
+    "method": "light rehabilitation",
+    "points": 100
+  }
+]

@@ -978,5 +978,49 @@
     {
         "time": "Fri Oct 17 20:29:46 2025",
         "log": "正在檢查 device_id: 'device0581'，目前系統已知的裝置有: ['device0581']"
+    },
+    {
+        "time": "Fri Jun  5 18:01:15 2026",
+        "log": "正在執行每日資料檢查..."
+    },
+    {
+        "time": "Fri Jun  5 22:26:43 2026",
+        "log": "正在檢查 device_id: 'device_demo_001'，目前系統已知的裝置有: ['device_demo_001']"
+    },
+    {
+        "time": "Fri Jun  5 23:54:27 2026",
+        "log": "U19f5c7ea1eb5591d7d374a4a62374f0f have allready login with deviceID in device-test"
+    },
+    {
+        "time": "Fri Jun  5 23:54:28 2026",
+        "log": "正在檢查 device_id: 'device-test'，目前系統已知的裝置有: ['device_demo_001', 'device-test']"
+    },
+    {
+        "time": "Fri Jun  5 23:55:10 2026",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：2.3 kg，你已經很努力了，明天再接再厲！ (目標：4.0kg)'}] to U_DEMO_USER_ID"
+    },
+    {
+        "time": "Fri Jun  5 23:55:10 2026",
+        "log": {
+            "message": "已發送給 U_DEMO_USER_ID：400, {\"message\":\"The property, 'to', in the request body is invalid (line: -, column: -)\"}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Fri Jun  5 23:55:10 2026",
+        "log": "Have allready send [{'type': 'text', 'text': '今日握力紀錄：2.3 kg，你已經很努力了，明天再接再厲！ (目標：3.0kg)'}] to U19f5c7ea1eb5591d7d374a4a62374f0f"
+    },
+    {
+        "time": "Fri Jun  5 23:55:11 2026",
+        "log": {
+            "message": "已發送給 U19f5c7ea1eb5591d7d374a4a62374f0f：200, {\"sentMessages\":[{\"id\":\"617139164801925257\",\"quoteToken\":\"VCGm66_GD47POWo5W3k_jRACmj6qzi8m-bdRFr4tnhlMt-D7sKzXiys4Pg11eDYuBn_PGXQ0uRteEUvAewo4dl5UHEDBvncANdyzPENi-PSuau7FKrzf8f8NrKmcIeGPdjPfY9Oaj0ekE1SPWfwOxw\"}]}, 資料庫儲存狀況：資料儲存成功"
+        }
+    },
+    {
+        "time": "Sat Jun  6 00:44:12 2026",
+        "log": "U19f5c7ea1eb5591d7d374a4a62374f0f have allready login with deviceID in device_test"
+    },
+    {
+        "time": "Sat Jun  6 00:44:12 2026",
+        "log": "正在檢查 device_id: 'device_test'，目前系統已知的裝置有: ['device_demo_001', 'device_test']"
     }
 ]

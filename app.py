@@ -15,6 +15,7 @@ from dotenv import load_dotenv
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from datetime import timedelta
 from functools import wraps
+from api_v1 import api_v1
 
 if os.path.exists(".env"): load_dotenv()
 
@@ -27,6 +28,8 @@ app.permanent_session_lifetime = timedelta(minutes=10)
 app.config.update(SESSION_COOKIE_SECURE=True, SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax')
 limiter = Limiter( app=app, key_func=get_remote_address, default_limits=["200 per day", "50 per hour"])
 csrf = CSRFProtect(app)
+app.register_blueprint(api_v1)
+csrf.exempt(api_v1)
 
 CLIENT_ID = int(os.getenv('LINE_LOGIN_CHANNEL_ID'))
 CLIENT_SECRET = str(os.getenv('LINE_LOGIN_CHANNEL_SECRET'))

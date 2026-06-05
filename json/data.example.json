@@ -8,15 +8,5 @@
     "device_id": "device_demo_001",
     "grip": 3.8,
     "timestamp": "20260605 18:10:00"
-  },
-  {
-    "device_id": "device_demo_001",
-    "grip": 2.3,
-    "timestamp": "20260605 23:55:10"
-  },
-  {
-    "device_id": "device-test",
-    "grip": 2.3,
-    "timestamp": "20260605 23:55:11"
   }
 ]

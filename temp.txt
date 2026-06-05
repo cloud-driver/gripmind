@@ -1,0 +1,13 @@
+[Unit]
+Description=GripMind Flask Backend
+After=network.target
+
+[Service]
+User=justus
+WorkingDirectory=/home/justus/OOP/gripmind
+Environment="PORT=10000"
+ExecStart=/home/justus/OOP/gripmind/.venv/bin/python app.py
+Restart=always
+RestartSec=5
+[Install]
+WantedBy=multi-user.target

@@ -1,1 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+ENV/
+
+# Environment variables
 .env
+.env.*
+
+# Flask
+instance/
+.webassets-cache
+
+# Logs
+*.log
+log.json
+
+# Runtime JSON data
+json/data.json
+json/users.json
+json/log.json
+json/keep.json
+json/arduino_api.json
+
+# Zip / generated files
+zip/
+*.zip
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Test / cache
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/

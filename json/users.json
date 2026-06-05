@@ -1,1 +1,22 @@
-[]
+[
+    {
+        "userId": "U_DEMO_USER_ID",
+        "deviceId": "device_demo_001",
+        "target": 3.7,
+        "age": "20",
+        "gender": "male",
+        "condition": "Trigger finger",
+        "method": "light rehabilitation",
+        "points": 100
+    },
+    {
+        "userId": "U19f5c7ea1eb5591d7d374a4a62374f0f",
+        "deviceId": "device_test",
+        "target": 3.0,
+        "age": null,
+        "gender": null,
+        "condition": null,
+        "method": null,
+        "points": 1000000000000
+    }
+]
